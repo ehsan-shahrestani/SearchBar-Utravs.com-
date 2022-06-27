@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// fonts
+@font-face {
+    font-family: "iranyekan-black";
+    src: url('assets/fonts/iranyekanwebblackfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-bold";
+    src: url('assets/fonts/iranyekanwebboldfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-bextrablack";
+    src: url('assets/fonts/iranyekanwebextrablackfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-light";
+    src: url('assets/fonts/iranyekanweblightfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-medium";
+    src: url('assets/fonts/iranyekanwebmediumfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-thin";
+    src: url('assets/fonts/iranyekanwebthinfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-regular";
+    src: url('assets/fonts/iranyekanwebregularfanum.woff');
+}
