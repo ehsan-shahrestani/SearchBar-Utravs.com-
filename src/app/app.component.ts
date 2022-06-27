@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'fatap-interview';
-  test:boolean=true
-  city : string = "تهران"
+  test: boolean = true
+  citys: string[] = ["تهران", "شیراز", "بوشهر", "مشهد"]
+  Form!: FormGroup
+  value!: string
+  constructor(
+    private fb: FormBuilder
+  ) { }
   ngOnInit(): void {
+    this.Form = this.fb.group({
+      des: [""]
+    })
+
+
+
+
+    this.Form.patchValue({});
   }
- Openckick(){
+  Openckick() {
     this.test = false
   }
-  Closeckick(){
+  Closeckick() {
     this.test = true
   }
 }
