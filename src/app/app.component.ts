@@ -8,8 +8,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   title = 'fatap-interview';
-  test: boolean = true
-  citys: string[] = ["تهران", "شیراز", "بوشهر", "مشهد"]
+  openlist: boolean = false
+  Innercitys: string[] = ["تهران", "شیراز", "بوشهر", "مشهد", "کیش", "سمنان"]
+  Foreigncitys: string[] = ["برلین", "استانبول", "لندن", "دبی", "سوئیس", "کانادا"]
   Form!: FormGroup
   value!: string
   constructor(
@@ -19,16 +20,17 @@ export class AppComponent implements OnInit {
     this.Form = this.fb.group({
       des: [""]
     })
-
-
-
-
-    this.Form.patchValue({});
   }
   Openckick() {
-    this.test = false
+    this.openlist = true
+
   }
   Closeckick() {
-    this.test = true
+    this.openlist = false
+  }
+  selectValue(cityName: string) {
+    // this.Form.patchValue({ "des": cityName });
+    this.openlist = false
+
   }
 }

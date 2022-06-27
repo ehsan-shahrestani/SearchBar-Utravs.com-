@@ -1,11 +1,11 @@
 <div class="container   mt-10 mx-auto relative">
   <!-- start form  -->
 
-  <div [ngClass]="test ?' MainPlace' : ' gotop'"
+  <div [ngClass]="openlist ?'  gotop' : ' MainPlace'"
     class=" px-6 z-50    absolute flex flex-col justify-start left-0 right-0 ">
     <h1 class="my-10  text-3xl text-white font-yekan-black">بلیط هواپیما</h1>
 
-    <div *ngIf="test" class=" flex  ">
+    <div *ngIf="openlist" class=" flex  ">
 
       <div class="flex  mb-3">
         <div class=" flex items-center justify-between bg-white  h-10 rounded-xl px-2  ">
@@ -44,8 +44,8 @@
 
     <div class=" ">
 
-      <button *ngIf="!test" (click)="Closeckick()"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 text-white  w-8" fill="none"
-          viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <button *ngIf="openlist" (click)="Closeckick()"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 text-white  w-8"
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg></button>
     </div>
@@ -64,7 +64,8 @@
 
 
       </div>
-<h1> value{{value}}</h1>
+      <h1> value :{{openlist}}</h1>
+
       <div [formGroup]="Form" class="flex w-full justify-start items-center  ">
 
         <!-- start input Destination and origin -->
@@ -80,17 +81,72 @@
               </svg>
             </span>
             <label>
-              <input
+              <input autocomplete="off"
                 class=" block  bg-transparent   text-gray-700    rounded-lg py-2 px-3  leading-tight focus:outline-none focus:bg-transparent "
                 id="grid-password" type="text" placeholder="مبدا را وارد کنید" formControlName="des">
             </label>
+            <!-- auto compelet -->
+            <!-- [ngClass]="openlist? 'opacity-100 translate-x-0 visible':'opacity-0 translate-x-28'" -->
+            <div *ngIf="openlist"   style="top: calc(100% + -5px); right: 25px; " 
+              class="   absolute z-50   mt-3 rounded-lg w-80 bg-white">
+              <!-- start header -->
+              <div class=" p-4 pb-2 border-b w-full">
+                <p class="text-sm text-gray-500">نتایج جستجو:</p>
+
+              </div>
+              <!-- end header -->
+
+
+              <div class="grid grid-flow-col   h-60 overflow-y-scroll">
+                <!-- start Inner cities -->
+                <div class="  pt-3 grid grid-cols-1 text-center gap-4">
+                  <div class="bg-gray-200 text-right">
+                    <p class=" p-2 text-sm text-blue-700">شهر های پرتردد داخلی</p>
+                  </div>
+                  <p  (click)='selectValue(city)' class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center"
+                    *ngFor="let city of Innercitys">
+                    <svg  xmlns="http://www.w3.org/2000/svg" class="h-6 ml-2 text-green-500 w-6" viewBox="0 0 20 20"
+                      fill="currentColor">
+                      <path fill-rule="evenodd"
+                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    {{city}}
+                  </p>
+                </div>
+                <!-- start Inner cities -->
+
+                <!-- start Foreign cities -->
+                <div class=" pt-3 grid grid-cols-1 text-center gap-4">
+                  <div class="bg-gray-200 text-right  ">
+                    <p class="p-2 text-sm text-blue-700">شهر های پرتردد خارجی</p>
+                  </div>
+                  <p class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center"
+                    *ngFor="let city of Foreigncitys">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 ml-2 text-green-500 w-6" viewBox="0 0 20 20"
+                      fill="currentColor">
+                      <path fill-rule="evenodd"
+                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    {{city}}
+                  </p>
+                </div>
+                <!-- start Foreign cities -->
+
+              </div>
+
+            </div>
+
+            <!-- auto compelet -->
+
           </div>
           <button><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
             </svg></button>
-          <div style="flex:1 1 auto ; width: 180px;"
+          <div (click)="Openckick()" style="flex:1 1 auto ; width: 180px;"
             class="flex h-10 flex-auto  bg-gray-200 rounded-xl p-2   items-center  justify-start">
             <span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 opacity-50 w-6" fill="none" viewBox="0 0 24 24"
@@ -101,10 +157,11 @@
               </svg>
             </span>
             <label>
-              <input
+              <input autocomplete="off"
                 class=" block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2 px-3  leading-tight focus:outline-none focus:bg-transparent "
-                id="grid-password" type="text" placeholder="مقصد را وارد کنید" >
+                id="grid-password" type="text" placeholder="مقصد را وارد کنید">
             </label>
+           
           </div>
         </div>
         <!-- end input Destination and origin -->
@@ -124,12 +181,12 @@
             <label class="flex">
               <input
                 class=" px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
-                id="grid-password" type="text" placeholder="تاریخ رفت" >
+                id="grid-password" type="text" placeholder="تاریخ رفت">
             </label>
             <label>
               <input
                 class=" block  bg-transparent   text-gray-700   focus:border-gray-600  rounded-lg py-2  leading-tight focus:outline-none focus:bg-transparent "
-                id="grid-password" type="text" placeholder="تاریخ برگشت" >
+                id="grid-password" type="text" placeholder="تاریخ برگشت">
             </label>
           </div>
         </div>
@@ -149,7 +206,7 @@
             <label class="flex">
               <input
                 class=" px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
-                id="grid-password" type="text" value=" 1 مسافر" >
+                id="grid-password" type="text" value=" 1 مسافر">
             </label>
           </div>
         </div>
@@ -161,6 +218,8 @@
             class=" py-2 px-6 h-10 rounded-lg  bg-gradient-to-tl from-orange-600 to-orange-300 text-white  hover:bg-gradient-to- ">جستجو</button>
         </div>
         <!-- end button search -->
+
+
 
       </div>
 
@@ -180,6 +239,6 @@
     <!-- end background -->
 
   </div>
-  <div *ngIf="!test" class="opacity-50 fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
+  <div *ngIf="openlist" class="opacity-50 fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
 
 </div>
