@@ -7,17 +7,17 @@
       <div class="grid grid-cols-3   mb-3">
         <div class=" w-full flex items-center justify-between bg-white  h-10 rounded-xl px-4  ">
           <span class="w-full">پرواز</span>
-          <i class=" w-full    fa-solid text-slate-700  mx-2  fa-xl   fa-plane-departure"></i>
+          <i class=" fa-fw  fa-solid text-slate-700  mx-2  fa-lg   fa-plane-departure"></i>
         </div>
         <!--  -->
         <div class=" flex items-center justify-between bg-slate-700  h-10 rounded-xl px-4 mr-2 ">
           <span class=" text-white">قطار</span>
-          <i class="fa-solid mx-2 fa-xl text-white fa-train-subway"></i>
+          <i class="fa-solid mx-2 fa-lg text-white fa-train-subway"></i>
         </div>
         <!--  -->
         <div class=" flex items-center justify-between bg-slate-700  h-10 rounded-xl px-4 mr-2  ">
           <span class=" text-white">هتل</span>
-          <i class="fa-solid mx-2 fa-xl  text-white  fa-couch"></i>
+          <i class="fa-solid mx-2 fa-lg  text-white  fa-couch"></i>
         </div>
         <!--  -->
       </div>
@@ -47,7 +47,7 @@
             <div
               class="flex flex-auto h-10  bg-gray-200 rounded-t-xl lg:rounded-xl p-2 items-center  justify-start relative">
               <span>
-                <i class="fa-solid fa-lg opacity-50 w-5 fa-location-dot"></i>
+                <i class="fa-solid fa-lg opacity-50  fa-location-dot"></i>
               </span>
               <label>
                 <input (focus)="onClickDestination()" autocomplete="off"
@@ -55,7 +55,7 @@
                   id="grid-password" type="text" placeholder="مبدا را وارد کنید" formControlName="destination">
               </label>
             </div>
-            <button
+            <button (click)=" onChangeAmountInput()"
               class=" bg-slate-300 lg:bg-transparent   rounded-lg rotate-90 transition  duration-500 lg:rotate-0 top-1/2 -translate-y-3 lg:translate-y-0 lg:bottom-0 left-5 lg:right-0 absolute lg:relative  ">
               <i class=" py-1  fa-solid mx-2 fa-lg text-stone-600 lg:text-blue-600  fa-arrow-right-arrow-left "></i>
 
@@ -153,7 +153,7 @@
 
           <div class="flex-1 bg-white pt-3 lg:pr-3 lg:pt-0">
             <button
-              class=" w-full py-2 px-6 h-10 rounded-lg  bg-gradient-to-tl from-orange-700 to-orange-400 text-white  hover:bg-gradient-to- text-lg ">جستجو</button>
+              class=" w-full py-2 px-6 h-10 rounded-lg  bg-gradient-to-tl from-orange-500 to-orange-300 text-white  hover:bg-gradient-to- text-lg ">جستجو</button>
           </div>
         </div>
       </div>
@@ -169,5 +169,5 @@
     </figure>
     <!-- end background -->
   </div>
-  <div *ngIf="openList" class="opacity-50 fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
+  <div *ngIf="openList" class="opacity-50 hidden lg:block fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
 </div>

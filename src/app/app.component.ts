@@ -43,6 +43,18 @@ export class AppComponent implements OnInit {
     })
 
   }
+  onChangeAmountInput() {
+    let des = this.PlaceForm.controls['destination'].value
+    let origin = this.PlaceForm.controls['origin'].value
+    let temp = des
+    this.PlaceForm.controls['destination'].setValue(origin)
+    this.PlaceForm.controls['origin'].setValue(temp)
+
+    
+
+
+
+  }
 
   onOpenList() {
     this.openList = !this.openList
@@ -84,7 +96,7 @@ export class AppComponent implements OnInit {
 
 
 
-// passengeer cunt
+  // passengeer cunt
 
   onAddNumberAdult() {
     this.adultPassengerCount++
