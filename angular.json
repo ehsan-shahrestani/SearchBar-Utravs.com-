@@ -31,9 +31,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "node_modules/@fortawesome/fontawesome-free/css/regular.css"
+
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
