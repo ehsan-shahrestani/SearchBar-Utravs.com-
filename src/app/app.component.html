@@ -1,244 +1,173 @@
 <div class="container   mt-10 mx-auto relative">
   <!-- start form  -->
-
-  <div [ngClass]="openlist ?'  gotop' : ' MainPlace'"
-    class=" px-6 z-50    absolute flex flex-col justify-start left-0 right-0 ">
+  <div [ngClass]="openList ?'  gotop' : ' MainPlace'"
+    class=" px-6 z-50  static lg:absolute flex flex-col justify-start left-0 right-0 ">
     <h1 class="my-10  text-3xl text-white font-yekan-black">بلیط هواپیما</h1>
-
-    <div *ngIf="openlist" class=" flex  ">
-
-      <div class="flex  mb-3">
-        <div class=" flex items-center justify-between bg-white  h-10 rounded-xl px-2  ">
-          <span>پرواز</span>
-          <svg xmlns:xlink="http://www.w3.org/1999/xlink" _ngcontent-utravs-ssr-c44=""
-            xmlns="http://www.w3.org/2000/svg" width="33.335" height="20" viewBox="0 0 33.335 20" class="item-icon">
-            <path _ngcontent-utravs-ssr-c44=""
-              d="M33.168,101.347a2.707,2.707,0,0,0-1.44-1.515,10.354,10.354,0,0,0-7.708-.325l-2.644.928-7.545-3.6a1.01,1.01,0,0,0-.767-.041l-4.5,1.581a.95.95,0,0,0-.633.756.928.928,0,0,0,.4.893l4.781,3.315-6.644,2.332L4,103.743a1,1,0,0,0-.949-.153l-2.4.843a.964.964,0,0,0-.551.487.911.911,0,0,0-.033.72l1.53,4.055a5.3,5.3,0,0,0,2.819,2.966,5.6,5.6,0,0,0,4.168.176l5.853-2.055-1.262,4.78a.921.921,0,0,0,.291.931,1,1,0,0,0,.655.243,1.008,1.008,0,0,0,.334-.057l4.5-1.581a.963.963,0,0,0,.56-.507l3.025-6.655,8.966-3.147a2.663,2.663,0,0,0,1.664-3.442Zm-22.2-1.812L13.34,98.7l5.5,2.625-3.513,1.233Zm19.871,3.484L21.477,106.3a.963.963,0,0,0-.56.507l-3.025,6.655-2.376.834,1.262-4.78a.921.921,0,0,0-.291-.931,1,1,0,0,0-.655-.243,1.009,1.009,0,0,0-.334.057l-7.59,2.664a3.593,3.593,0,0,1-2.674-.113,3.4,3.4,0,0,1-1.808-1.9l-1.2-3.17.965-.339L5.66,107.47a1.006,1.006,0,0,0,.949.153l18.079-6.346a8.347,8.347,0,0,1,6.214.262.808.808,0,0,1,.43.452A.8.8,0,0,1,30.835,103.019Z"
-              transform="translate(-0.001 -96.736)" fill="#2B475A"></path>
-          </svg>
+    <div *ngIf="!openList" class=" flex  ">
+      <div class="grid grid-cols-3   mb-3">
+        <div class=" w-full flex items-center justify-between bg-white  h-10 rounded-xl px-4  ">
+          <span class="w-full">پرواز</span>
+          <i class=" w-full    fa-solid text-slate-700  mx-2  fa-xl   fa-plane-departure"></i>
         </div>
         <!--  -->
-        <div class=" flex items-center justify-between bg-slate-700  h-10 rounded-xl px-2 mr-2 ">
+        <div class=" flex items-center justify-between bg-slate-700  h-10 rounded-xl px-4 mr-2 ">
           <span class=" text-white">قطار</span>
-          <svg xmlns:xlink="http://www.w3.org/1999/xlink" _ngcontent-utravs-ssr-c44=""
-            xmlns="http://www.w3.org/2000/svg" width="36.667" height="20" viewBox="0 0 36.667 20" class="item-icon">
-            <path _ngcontent-utravs-ssr-c44=""
-              d="M18.724,20H.754a.685.685,0,1,1,0-1.369H4.026a1.949,1.949,0,0,1-.122-.684v-.685H.715a.686.686,0,1,1,0-1.37H32a3.283,3.283,0,0,0,2.267-.9,2.98,2.98,0,0,0,0-4.342l-.252-.242H20.335a2.664,2.664,0,0,1-2.723-2.6,2.665,2.665,0,0,1,2.723-2.6h8.244l-.82-.785a11.057,11.057,0,0,0-7.693-3.053H.715A.7.7,0,0,1,0,.684.7.7,0,0,1,.715,0h19.35a12.513,12.513,0,0,1,8.7,3.453l2.041,1.953,4,3.834.462.442a4.341,4.341,0,0,1,1.36,3.138A4.544,4.544,0,0,1,32,17.262H28.468v.685a1.949,1.949,0,0,1-.122.684h7.613a.685.685,0,1,1,0,1.369ZM25.6,17.947a.718.718,0,0,0,1.435,0v-.685H25.6Zm-17.408,0a1.949,1.949,0,0,1-.122.684H24.3a1.95,1.95,0,0,1-.124-.684v-.685H8.195Zm-2.86,0a.716.716,0,0,0,1.431,0v-.685H5.335ZM19.041,7.81a1.263,1.263,0,0,0,1.294,1.23H32.584L30.008,6.576H20.335A1.264,1.264,0,0,0,19.041,7.81ZM.715,10.409a.685.685,0,1,1,0-1.369H11.879a1.233,1.233,0,1,0,0-2.464H3.446a.685.685,0,1,1,0-1.369h8.433a2.663,2.663,0,0,1,2.7,2.585,2.656,2.656,0,0,1-2.7,2.618Z"
-              fill="#FFFFFF"></path>
-          </svg>
+          <i class="fa-solid mx-2 fa-xl text-white fa-train-subway"></i>
         </div>
         <!--  -->
-        <div class=" flex items-center justify-between bg-slate-700  h-10 rounded-xl px-2 mr-2  ">
+        <div class=" flex items-center justify-between bg-slate-700  h-10 rounded-xl px-4 mr-2  ">
           <span class=" text-white">هتل</span>
-          <svg xmlns:xlink="http://www.w3.org/1999/xlink" _ngcontent-utravs-ssr-c44=""
-            xmlns="http://www.w3.org/2000/svg" width="33.354" height="20" viewBox="0 0 33.354 20" class="item-icon">
-            <path _ngcontent-utravs-ssr-c44=""
-              d="M30.984,71.363h-.329v-5.4A3.45,3.45,0,0,0,27.2,62.523H6.155A3.45,3.45,0,0,0,2.7,65.96v5.4H2.37A2.366,2.366,0,0,0,0,73.72v3.492a2.366,2.366,0,0,0,2.37,2.357H5.3v2.218a.741.741,0,0,0,1.482,0V79.569H26.571v2.218a.741.741,0,0,0,1.482,0V79.569h2.93a2.366,2.366,0,0,0,2.37-2.357V73.72A2.366,2.366,0,0,0,30.984,71.363Zm-26.8-5.4A1.97,1.97,0,0,1,6.155,64H27.2a1.97,1.97,0,0,1,1.973,1.963v5.4h-.95v-1.48A1.718,1.718,0,0,0,26.5,68.172H18.9a1.718,1.718,0,0,0-1.721,1.712v1.48h-1.01v-1.48a1.718,1.718,0,0,0-1.721-1.712h-7.6a1.718,1.718,0,0,0-1.721,1.712v1.48h-.95v-5.4Zm14.483,5.4v-1.48a.242.242,0,0,1,.239-.238h7.6a.241.241,0,0,1,.239.238v1.48Zm-12.051,0v-1.48a.241.241,0,0,1,.239-.238h7.6a.242.242,0,0,1,.239.238v1.48H6.614Zm25.258,5.848a.886.886,0,0,1-.888.883H2.37a.886.886,0,0,1-.888-.883V73.72a.886.886,0,0,1,.888-.883H30.984a.886.886,0,0,1,.888.883Z"
-              transform="translate(0 -62.523)" fill="#FFFFFF"></path>
-          </svg>
+          <i class="fa-solid mx-2 fa-xl  text-white  fa-couch"></i>
         </div>
         <!--  -->
       </div>
-
     </div>
-
     <div class=" ">
-
-      <button *ngIf="openlist" (click)="Closeckick()"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 text-white  w-8"
-          fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <button *ngIf="openList" (click)="onOpenList()"><svg xmlns="http://www.w3.org/2000/svg"
+          class="h-8 text-white  w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg></button>
     </div>
     <div class="bg-white rounded-xl p-3 w-full  ">
-
-      <div class="flex mb-4 justify-start items-center">
+      <div [formGroup]="radioInputForm" class="flex mb-4 justify-start items-center">
         <div class="flex   justify-start items-center">
-          <input class="mx-2" type="radio" name="" id="">
+          <input class="mx-2" type="radio" value="oneWay" name="" id="" formControlName="radioInput">
           <label for="">یک طرفه</label>
         </div>
-
         <div class="mr-10 flex  justify-start items-center">
-          <input class="mx-2" type="radio" name="" id="">
+          <input class="mx-2" type="radio" name="" value="twoWay" id="" formControlName="radioInput">
           <label for="">دوطرفه</label>
         </div>
-
-
       </div>
-      <h1> value :{{openlist}}</h1>
 
-      <div [formGroup]="Form" class="flex w-full justify-start items-center  ">
+      <div [formGroup]="PlaceForm" class="grid grid-cols-12 gap-3">
 
-        <!-- start input Destination and origin -->
-        <div class="flex  justify-start  ml-2  ">
-          <div (click)="Openckick()" style="flex:1 1 auto ; width: 180px;"
-            class="flex  h-10  bg-gray-200 rounded-xl p-2 items-center  justify-start">
-            <span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 opacity-50 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </span>
-            <label>
-              <input autocomplete="off"
-                class=" block  bg-transparent   text-gray-700    rounded-lg py-2 px-3  leading-tight focus:outline-none focus:bg-transparent "
-                id="grid-password" type="text" placeholder="مبدا را وارد کنید" formControlName="des">
-            </label>
+        <div class="col-span-12 lg:col-span-5 ">
+          <div class="flex flex-col lg:flex-row justify-start relative ">
+            <div
+              class="flex flex-auto h-10  bg-gray-200 rounded-t-xl lg:rounded-xl p-2 items-center  justify-start relative">
+              <span>
+                <i class="fa-solid fa-lg opacity-50 w-5 fa-location-dot"></i>
+              </span>
+              <label>
+                <input (focus)="onClickDestination()" autocomplete="off"
+                  class=" w-full block  bg-transparent   text-gray-700    rounded-lg py-2 px-3  leading-tight focus:outline-none focus:bg-transparent "
+                  id="grid-password" type="text" placeholder="مبدا را وارد کنید" formControlName="destination">
+              </label>
+            </div>
+            <button
+              class=" bg-slate-300 lg:bg-transparent   rounded-lg rotate-90 transition  duration-500 lg:rotate-0 top-1/2 -translate-y-3 lg:translate-y-0 lg:bottom-0 left-5 lg:right-0 absolute lg:relative  ">
+              <i class=" py-1  fa-solid mx-2 fa-lg text-stone-600 lg:text-blue-600  fa-arrow-right-arrow-left "></i>
+
+            </button>
+            <div
+              class="flex h-10 flex-auto bg-gray-200 rounded-b-xl lg:rounded-xl p-2 mt-px   items-center  justify-start">
+              <span>
+                <i class="fa-solid fa-lg opacity-50 fa-location-dot"></i>
+              </span>
+              <label>
+                <input #orginInput autocomplete="off"
+                  class=" w-full block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2 px-3  leading-tight focus:outline-none focus:bg-transparent "
+                  id="grid-password" type="text" placeholder="مقصد را وارد کنید " formControlName="origin"
+                  (focus)="onClickOrigin()">
+              </label>
+            </div>
             <!-- auto compelet -->
             <!-- [ngClass]="openlist? 'opacity-100 translate-x-0 visible':'opacity-0 translate-x-28'" -->
-            <div *ngIf="openlist"   style="top: calc(100% + -5px); right: 25px; " 
-              class="   absolute z-50   mt-3 rounded-lg w-80 bg-white">
+            <div *ngIf="openList" class=" mt-3  absolute z-50     rounded-lg w-80 bg-white top-full"
+              [ngClass]="{'right-6 ':dropdownState=='right','right-60':dropdownState=='left'}">
               <!-- start header -->
               <div class=" p-4 pb-2 border-b w-full">
                 <p class="text-sm text-gray-500">نتایج جستجو:</p>
-
               </div>
               <!-- end header -->
-
-
               <div class="grid grid-flow-col   h-60 overflow-y-scroll">
                 <!-- start Inner cities -->
                 <div class="  pt-3 grid grid-cols-1 text-center gap-4">
                   <div class="bg-gray-200 text-right">
                     <p class=" p-2 text-sm text-blue-700">شهر های پرتردد داخلی</p>
                   </div>
-                  <p  (click)='selectValue(city)' class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center"
-                    *ngFor="let city of Innercitys">
-                    <svg  xmlns="http://www.w3.org/2000/svg" class="h-6 ml-2 text-green-500 w-6" viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path fill-rule="evenodd"
-                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                        clip-rule="evenodd" />
-                    </svg>
+                  <span (click)='onSelectItem(city)' *ngFor="let city of Innercitys"
+                    class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center">
+                    <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
                     {{city}}
-                  </p>
+                  </span>
                 </div>
                 <!-- start Inner cities -->
-
                 <!-- start Foreign cities -->
                 <div class=" pt-3 grid grid-cols-1 text-center gap-4">
                   <div class="bg-gray-200 text-right  ">
                     <p class="p-2 text-sm text-blue-700">شهر های پرتردد خارجی</p>
                   </div>
                   <p class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center"
-                    *ngFor="let city of Foreigncitys">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 ml-2 text-green-500 w-6" viewBox="0 0 20 20"
-                      fill="currentColor">
-                      <path fill-rule="evenodd"
-                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                        clip-rule="evenodd" />
-                    </svg>
+                    *ngFor="let city of Foreigncitys" (click)='onSelectItem(city)'>
+                    <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
                     {{city}}
                   </p>
                 </div>
                 <!-- start Foreign cities -->
-
               </div>
-
             </div>
-
             <!-- auto compelet -->
-
-          </div>
-          <button><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-            </svg></button>
-          <div (click)="Openckick()" style="flex:1 1 auto ; width: 180px;"
-            class="flex h-10 flex-auto  bg-gray-200 rounded-xl p-2   items-center  justify-start">
-            <span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 opacity-50 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </span>
-            <label>
-              <input autocomplete="off"
-                class=" block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2 px-3  leading-tight focus:outline-none focus:bg-transparent "
-                id="grid-password" type="text" placeholder="مقصد را وارد کنید">
-            </label>
-           
           </div>
         </div>
-        <!-- end input Destination and origin -->
 
-        <!-- start input time  -->
-        <div class="flex justify-start ml-2   ">
 
-          <div style="flex:1 1 auto ; width: 380px;"
-            class=" flex-auto flex h-10  bg-gray-200 rounded-xl p-2   items-center  justify-between">
+        <div class="col-span-12 lg:col-span-3 ">
+
+
+          <div class="flex h-10  bg-gray-200 rounded-xl p-2   items-center  justify-between">
             <span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 opacity-50 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+              <i class="fa-solid opacity-50 fa-lg fa-calendar-days"></i>
             </span>
             <label class="flex">
               <input
-                class=" px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
+                class=" w-full px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
                 id="grid-password" type="text" placeholder="تاریخ رفت">
             </label>
             <label>
               <input
-                class=" block  bg-transparent   text-gray-700   focus:border-gray-600  rounded-lg py-2  leading-tight focus:outline-none focus:bg-transparent "
+                class=" w-full block  bg-transparent   text-gray-700   focus:border-gray-600  rounded-lg py-2  leading-tight focus:outline-none focus:bg-transparent "
                 id="grid-password" type="text" placeholder="تاریخ برگشت">
             </label>
           </div>
         </div>
-        <!-- end input time  -->
-        <!-- start input passenger   -->
-        <div class="flex justify-start   ml-2  ">
 
-          <div style="flex:1 1 auto ; "
-            class="flex h-10 flex-1  bg-gray-200 rounded-xl p-2   items-center  justify-between">
-            <span>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 opacity-50 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            </span>
-            <label class="flex">
-              <input
-                class=" px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
-                id="grid-password" type="text" value=" 1 مسافر">
-            </label>
+
+
+        <div class="col-span-12 lg:col-span-4 flex flex-wrap flex-col  lg:flex-row">
+          <div class="flex-1 bg-white">
+
+            <div class="flex w-full h-10 bg-gray-200 rounded-xl p-2   items-center ">
+              <span>
+                <i class="fa-solid fa-lg opacity-50 fa-user-group"></i>
+              </span>
+              <label class="flex">
+
+                <input #passengerInput
+                  class=" w-full pointer-events-none select-none px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
+                  id="grid-password" type="text" value=" 1 مسافر">
+              </label>
+            </div>
+          </div>
+
+          <div class="flex-1 bg-white pt-3 lg:pr-3 lg:pt-0">
+            <button
+              class=" w-full py-2 px-6 h-10 rounded-lg  bg-gradient-to-tl from-orange-700 to-orange-400 text-white  hover:bg-gradient-to- text-lg ">جستجو</button>
           </div>
         </div>
-        <!-- end input passenger  -->
-
-        <!-- start button  search -->
-        <div style="flex:1 1 auto ; width: 180px;" class=" ">
-          <button
-            class=" py-2 px-6 h-10 rounded-lg  bg-gradient-to-tl from-orange-600 to-orange-300 text-white  hover:bg-gradient-to- ">جستجو</button>
-        </div>
-        <!-- end button search -->
-
-
-
       </div>
 
     </div>
-
-
-
   </div>
   <!-- end form  -->
-
   <!-- start background -->
-  <div class="relative -z-10">
+  <div class=" hidden lg:block  relative -z-10">
     <figure>
-      <img class=" mx-auto rounded-3xl fil" src="assets/backgrund/flight.jpg" alt="flight" width="1200" height="375"
+      <img class=" mx-auto rounded-3xl " src="assets/backgrund/flight.jpg" alt="flight" width="1200" height="375"
         loading="lazy">
     </figure>
     <!-- end background -->
-
   </div>
-  <div *ngIf="openlist" class="opacity-50 fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
-
+  <div *ngIf="openList" class="opacity-50 fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
 </div>

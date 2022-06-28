@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -8,29 +9,109 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   title = 'fatap-interview';
-  openlist: boolean = false
+
   Innercitys: string[] = ["تهران", "شیراز", "بوشهر", "مشهد", "کیش", "سمنان"]
   Foreigncitys: string[] = ["برلین", "استانبول", "لندن", "دبی", "سوئیس", "کانادا"]
-  Form!: FormGroup
-  value!: string
+
+  @ViewChild('orginInput') orginInput!: ElementRef;
+  @ViewChild('passengerInput') passengerInput!: ElementRef;
+
+  dropdownState: 'left' | 'right' = 'right';
+  PlaceForm!: FormGroup
+  radioInputForm!: FormGroup
+
+  adultPassengerCount: number = 0
+  childPassengerCount: number = 0
+  babyPassengerCount: number = 0
+
+  passengerCount!: number
+
+  openList: boolean = false
+  openPassengerLIst: boolean = false
   constructor(
     private fb: FormBuilder
   ) { }
   ngOnInit(): void {
-    this.Form = this.fb.group({
-      des: [""]
+
+    this.PlaceForm = this.fb.group({
+      destination: [""],
+      origin: [""]
     })
-  }
-  Openckick() {
-    this.openlist = true
+
+    this.radioInputForm = this.fb.group({
+      radioInput: ["oneWay"]
+    })
 
   }
-  Closeckick() {
-    this.openlist = false
+
+  onOpenList() {
+    this.openList = !this.openList
   }
-  selectValue(cityName: string) {
-    // this.Form.patchValue({ "des": cityName });
-    this.openlist = false
+  onOpenDatepicker() {
 
   }
+  onOpenPassengerLIst() {
+
+    this.openPassengerLIst = !this.openPassengerLIst
+  }
+
+
+
+  onClickDestination() {
+    this.onOpenList()
+    this.dropdownState = 'right'
+  }
+
+  onClickOrigin() {
+    this.onOpenList()
+    this.dropdownState = 'left'
+  }
+
+
+  onSelectItem(city: string) {
+    const targetField = this.dropdownState === 'right' ? 'destination' : 'origin';
+    this.PlaceForm.controls[targetField].setValue(city)
+
+    if (targetField == 'destination') {
+      this.orginInput.nativeElement.focus();
+    }
+    if (targetField == 'origin') {
+      this.passengerInput.nativeElement.focus()
+      this.onOpenPassengerLIst()
+    }
+    this.onOpenList()
+  }
+
+
+
+// passengeer cunt
+
+  onAddNumberAdult() {
+    this.adultPassengerCount++
+  }
+  onDeductionNumberAdult() {
+    if (this.adultPassengerCount > 0) {
+      this.adultPassengerCount--
+    }
+  }
+  // 
+  onAddNumberCild() {
+    this.childPassengerCount++
+  }
+  onDeductionNumberCild() {
+    if (this.childPassengerCount > 0) {
+      this.childPassengerCount--
+    }
+  }
+
+
+  onAddNumberBaby() {
+    this.babyPassengerCount++
+  }
+  onDeductionNumberBaby() {
+    if (this.babyPassengerCount > 0) {
+      this.babyPassengerCount--
+    }
+  }
+
 }
