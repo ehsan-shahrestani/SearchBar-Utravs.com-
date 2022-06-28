@@ -22,11 +22,8 @@
         <!--  -->
       </div>
     </div>
-    <div class=" ">
-      <button *ngIf="openList" (click)="onOpenList()"><svg xmlns="http://www.w3.org/2000/svg"
-          class="h-8 text-white  w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg></button>
+    <div class=" mb-3 ">
+      <button *ngIf="openList" (click)="onOpenList()"><i class=" text-white fa-xl fa-solid fa-x"></i></button>
     </div>
     <div class="bg-white rounded-xl p-3 w-full  ">
       <div [formGroup]="radioInputForm" class="flex mb-4 justify-start items-center">
@@ -72,44 +69,46 @@
                   (focus)="onClickOrigin()">
               </label>
             </div>
-            <!-- auto compelet -->
-            <!-- [ngClass]="openlist? 'opacity-100 translate-x-0 visible':'opacity-0 translate-x-28'" -->
-            <div *ngIf="openList" class=" mt-3  absolute z-50     rounded-lg w-80 bg-white top-full"
-              [ngClass]="{'right-6 ':dropdownState=='right','right-60':dropdownState=='left'}">
-              <!-- start header -->
-              <div class=" p-4 pb-2 border-b w-full">
-                <p class="text-sm text-gray-500">نتایج جستجو:</p>
-              </div>
-              <!-- end header -->
-              <div class="grid grid-flow-col   h-60 overflow-y-scroll">
-                <!-- start Inner cities -->
-                <div class="  pt-3 grid grid-cols-1 text-center gap-4">
-                  <div class="bg-gray-200 text-right">
-                    <p class=" p-2 text-sm text-blue-700">شهر های پرتردد داخلی</p>
-                  </div>
-                  <span (click)='onSelectItem(city)' *ngFor="let city of Innercitys"
-                    class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center">
-                    <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
-                    {{city}}
-                  </span>
-                </div>
-                <!-- start Inner cities -->
-                <!-- start Foreign cities -->
-                <div class=" pt-3 grid grid-cols-1 text-center gap-4">
-                  <div class="bg-gray-200 text-right  ">
-                    <p class="p-2 text-sm text-blue-700">شهر های پرتردد خارجی</p>
-                  </div>
-                  <p class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center"
-                    *ngFor="let city of Foreigncitys" (click)='onSelectItem(city)'>
-                    <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
-                    {{city}}
-                  </p>
-                </div>
-                <!-- start Foreign cities -->
-              </div>
-            </div>
-            <!-- auto compelet -->
           </div>
+          <!-- auto compelet -->
+          <!-- [ngClass]="openlist? 'opacity-100 translate-x-0 visible':'opacity-0 translate-x-28'" -->
+          <div *ngIf="openList"
+            class=" top-0 left-0  lg:mt-3 fixed w-full h-full lg:h-80 overflow-auto  lg:absolute z-50 rounded-none lg:rounded-lg  lg:w-80 bg-white lg:top-full"
+            [ngClass]="{'lg:right-6 ':dropdownState=='right','lg:right-60':dropdownState=='left'}">
+            <!-- start header -->
+            <div class=" flex items-center justify-between   p-4 pb-2 border-b w-full">
+              <p class="text-sm text-gray-500">نتایج جستجو:</p>
+              <button class=" block lg:hidden " (click)="onOpenList()"><i class=" fa-lg fa-solid fa-x"></i></button>
+            </div>
+            <!-- end header -->
+            <div class="grid grid-flow-col  ">
+              <!-- start Inner cities -->
+              <div class="  pt-3 grid grid-cols-1 text-center gap-4">
+                <div class="bg-gray-200 text-right">
+                  <p class=" p-2 text-sm text-blue-700">شهر های پرتردد داخلی</p>
+                </div>
+                <span (click)='onSelectItem(city)' *ngFor="let city of Innercitys"
+                  class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center">
+                  <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
+                  {{city}}
+                </span>
+              </div>
+              <!-- start Inner cities -->
+              <!-- start Foreign cities -->
+              <div class=" pt-3 grid grid-cols-1 text-center gap-4">
+                <div class="bg-gray-200 text-right  ">
+                  <p class="p-2 text-sm text-blue-700">شهر های پرتردد خارجی</p>
+                </div>
+                <p class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center"
+                  *ngFor="let city of Foreigncitys" (click)='onSelectItem(city)'>
+                  <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
+                  {{city}}
+                </p>
+              </div>
+              <!-- start Foreign cities -->
+            </div>
+          </div>
+          <!-- auto compelet -->
         </div>
 
 
@@ -149,12 +148,88 @@
                   id="grid-password" type="text" value=" 1 مسافر">
               </label>
             </div>
+
           </div>
 
           <div class="flex-1 bg-white pt-3 lg:pr-3 lg:pt-0">
             <button
               class=" w-full py-2 px-6 h-10 rounded-lg  bg-gradient-to-tl from-orange-500 to-orange-300 text-white  hover:bg-gradient-to- text-lg ">جستجو</button>
           </div>
+          <!--  -->
+
+          <!-- passenger fild  openPassengerLIst-->
+          <!-- [ngClass]="openlist? 'opacity-100 translate-x-0 visible':'opacity-0 translate-x-28'" -->
+          <div *ngIf="openPassengerLIst"
+            class=" fixed lg:absolute lg:top-full  w-full lg:w-80 bottom-0 lg:bottom-auto  left-0  lg:left-6  z-50 mt-3 rounded-t-2xl  lg:rounded-2xl  bg-white">
+            <div class="  flex items-center justify-between lg:hidden  text-center p-4 pb-2 border-b w-full">
+              <p class="text-sm text-gray-500">تعداد مسافران</p>
+              <button (click)="onOpenPassengerLIst()">
+                <i class="  fa-solid fa-x"></i>
+
+              </button>
+            </div>
+            <div class="grid grid-flow-row p-4   h-60 ">
+
+              <div class=" border-b   flex items-center justify-between ">
+                <div>
+                  <h3>بزرگسال</h3>
+                  <p class="text-xs text-zinc-500">(از12 سال به بالا)</p>
+                </div>
+                <div class="flex">
+                  <button class="bg-blue-200  flex justify-center items-center rounded-lg"
+                    (click)="onAddNumberAdult()"><i class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i></button>
+                  <p class="text-xl mx-6">{{adultPassengerCount}}</p>
+                  <button class="bg-blue-200  flex justify-center items-center rounded-lg"
+                    (click)="onDeductionNumberAdult()"><i
+                      class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-minus"></i></button>
+                </div>
+              </div>
+
+              <div class=" border-b flex items-center justify-between ">
+                <div>
+                  <h3>کودک</h3>
+                  <p class="text-xs text-zinc-500">(از 2 تا 12 سال)</p>
+                </div>
+                <div class="flex">
+                  <div class="bg-blue-200  flex justify-center items-center rounded-lg">
+                    <button (click)="onAddNumberCild()">
+                      <i class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i>
+                    </button>
+                  </div>
+                  <p class="text-xl mx-6">{{childPassengerCount}}</p>
+                  <div class="bg-blue-200  flex justify-center items-center rounded-lg">
+                    <button (click)="onDeductionNumberCild()"><i
+                        class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="  flex items-center justify-between ">
+                <div>
+                  <h3>نوزاد</h3>
+                  <p class="text-xs text-zinc-500">(از 10روز تا 2 سال)</p>
+                </div>
+                <div class="flex flex-row">
+                  <button (click)="onAddNumberBaby()"
+                    class="bg-blue-200  flex justify-center items-center rounded-lg"><i
+                      class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i></button>
+                  <p class="text-xl mx-6">{{babyPassengerCount}}</p>
+                  <button (click)="onDeductionNumberBaby()"
+                    class="bg-blue-200  flex justify-center items-center rounded-lg"><i
+                      class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+            <div class="lg:hidden p-4    flex-1 bg-white  ">
+              <button
+                class=" w-full py-2 px-6 h-10 rounded-lg  bg-gradient-to-tl from-orange-500 to-orange-300 text-white  hover:bg-gradient-to- text-lg ">جستجو</button>
+            </div>
+          </div>
+
+          <!--  -->
         </div>
       </div>
 
@@ -169,5 +244,5 @@
     </figure>
     <!-- end background -->
   </div>
-  <div *ngIf="openList" class="opacity-50 hidden lg:block fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
+  <div *ngIf="openList ||openPassengerLIst" class="opacity-50  lg:block fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
 </div>

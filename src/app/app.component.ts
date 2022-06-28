@@ -49,11 +49,6 @@ export class AppComponent implements OnInit {
     let temp = des
     this.PlaceForm.controls['destination'].setValue(origin)
     this.PlaceForm.controls['origin'].setValue(temp)
-
-    
-
-
-
   }
 
   onOpenList() {
@@ -63,8 +58,8 @@ export class AppComponent implements OnInit {
 
   }
   onOpenPassengerLIst() {
-
     this.openPassengerLIst = !this.openPassengerLIst
+    
   }
 
 
@@ -84,10 +79,10 @@ export class AppComponent implements OnInit {
     const targetField = this.dropdownState === 'right' ? 'destination' : 'origin';
     this.PlaceForm.controls[targetField].setValue(city)
 
-    if (targetField == 'destination') {
+    if (targetField == 'destination' && screen.width >=1024) {
       this.orginInput.nativeElement.focus();
     }
-    if (targetField == 'origin') {
+    if (targetField == 'origin'&& screen.width >=1024) {
       this.passengerInput.nativeElement.focus()
       this.onOpenPassengerLIst()
     }
