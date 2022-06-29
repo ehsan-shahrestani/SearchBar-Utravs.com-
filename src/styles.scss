@@ -40,9 +40,16 @@
 }
 
 
+.ngb-dp-weekday{
+    text-align: left !important;
+    font-size: 0.9rem !important;
+    width: 4rem !important;
+    height: 2.5rem !important;
+    font-style: normal !important;
+
+}
 
 .ngb-dp-day,
-.ngb-dp-weekday,
 .ngb-dp-week-number {
     width: 4rem !important;
     height: 2.5rem !important;
@@ -67,6 +74,8 @@
 .bg-primary {
     color: white !important;
     background-color: #0075ff !important;
+    border-radius: 0.5rem !important;
+
 
 }
 

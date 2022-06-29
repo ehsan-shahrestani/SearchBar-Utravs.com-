@@ -2,7 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 
 import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian } from '@ng-bootstrap/ng-bootstrap';
 
-const WEEKDAYS_SHORT = ['د', 'س', 'چ', 'پ', 'ج', 'ش', 'ی'];
+const WEEKDAYS_SHORT = ['دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه', 'یکشنبه'];
 const MONTHS = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
 
 @Injectable()
@@ -32,9 +32,12 @@ export class DatepickerComponent implements OnInit {
   navigation = 'arrows';
   showWeekNumbers = false;
   outsideDays = 'visible';
+
   ngOnInit(): void {
-    
-    
+    let x = this.model
+   
+   
+
   }
 
 }
