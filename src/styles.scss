@@ -38,3 +38,76 @@
     font-family: "iranyekan-regular";
     src: url('assets/fonts/iranyekanwebregularfanum.woff');
 }
+
+
+
+.ngb-dp-day,
+.ngb-dp-weekday,
+.ngb-dp-week-number {
+    width: 4rem !important;
+    height: 2.5rem !important;
+    text-align: left !important;
+    font-size: large !important;
+
+
+}
+
+.ngb-dp-month+.ngb-dp-month .ngb-dp-week {
+    padding-left: 0 !important;
+}
+
+.ngb-dp-day {
+    background: #9b9fa215 !important;
+    border-radius: 0.5rem !important;
+    margin: 2px !important;
+}
+
+
+
+.bg-primary {
+    color: white !important;
+    background-color: #0075ff !important;
+
+}
+
+.ngb-dp-day:hover {
+    background: #579dd663 !important;
+    border-radius: 0.5rem !important;
+}
+
+.ngb-datepicker {
+    width: 100% !important;
+    background-color: white !important;
+
+}
+
+.ngb-dp-arrow.right .ngb-dp-navigation-chevron {
+    transform: rotate(220deg) !important;
+    border-color: black !important;
+    outline: none !important;
+
+}
+
+
+.ngb-dp-navigation-chevron {
+    transform: rotate(45deg) !important;
+    border-color: black !important;
+    outline: none !important;
+
+
+}
+
+[ngbDatepickerDayView] {
+    text-align: left !important;
+    width: 100% !important;
+    height: 100% !important;
+    line-height: 2rem;
+    border-radius: 0.25rem;
+    background: transparent;
+    padding: 5px !important;
+}
+
+.ngb-dp-months {
+    display: flex !important;
+    justify-content: space-evenly !important;
+}

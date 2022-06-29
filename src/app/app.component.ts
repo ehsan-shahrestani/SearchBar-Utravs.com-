@@ -1,13 +1,19 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Injectable, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+ 
 })
 export class AppComponent implements OnInit {
+  model!: NgbDateStruct;
+  date!: {year: number, month: number};
   title = 'fatap-interview';
 
   Innercitys: string[] = ["تهران", "شیراز", "بوشهر", "مشهد", "کیش", "سمنان"]
@@ -20,14 +26,15 @@ export class AppComponent implements OnInit {
   PlaceForm!: FormGroup
   radioInputForm!: FormGroup
 
-  adultPassengerCount: number = 0
-  childPassengerCount: number = 0
-  babyPassengerCount: number = 0
+  adultPersonCount: number = 1
+  childPersonCount: number = 0
+  babyPersonCount: number = 0
 
-  passengerCount!: number
+  allPersonCount: number = 1
 
   openList: boolean = false
   openPassengerLIst: boolean = false
+
   constructor(
     private fb: FormBuilder
   ) { }
@@ -59,7 +66,7 @@ export class AppComponent implements OnInit {
   }
   onOpenPassengerLIst() {
     this.openPassengerLIst = !this.openPassengerLIst
-    
+
   }
 
 
@@ -67,11 +74,14 @@ export class AppComponent implements OnInit {
   onClickDestination() {
     this.onOpenList()
     this.dropdownState = 'right'
+    this.openPassengerLIst = false
   }
 
   onClickOrigin() {
     this.onOpenList()
     this.dropdownState = 'left'
+    this.openPassengerLIst = false
+
   }
 
 
@@ -79,10 +89,10 @@ export class AppComponent implements OnInit {
     const targetField = this.dropdownState === 'right' ? 'destination' : 'origin';
     this.PlaceForm.controls[targetField].setValue(city)
 
-    if (targetField == 'destination' && screen.width >=1024) {
+    if (targetField == 'destination' && screen.width >= 1024) {
       this.orginInput.nativeElement.focus();
     }
-    if (targetField == 'origin'&& screen.width >=1024) {
+    if (targetField == 'origin' && screen.width >= 1024) {
       this.passengerInput.nativeElement.focus()
       this.onOpenPassengerLIst()
     }
@@ -92,33 +102,76 @@ export class AppComponent implements OnInit {
 
 
   // passengeer cunt
-
-  onAddNumberAdult() {
-    this.adultPassengerCount++
-  }
-  onDeductionNumberAdult() {
-    if (this.adultPassengerCount > 0) {
-      this.adultPassengerCount--
-    }
-  }
-  // 
-  onAddNumberCild() {
-    this.childPassengerCount++
-  }
-  onDeductionNumberCild() {
-    if (this.childPassengerCount > 0) {
-      this.childPassengerCount--
+  increaseAdultPerson() {
+    if (this.validateIncreasePersonCount()) {
+      this.adultPersonCount++;
+      this.allPersonCount++;
     }
   }
 
-
-  onAddNumberBaby() {
-    this.babyPassengerCount++
-  }
-  onDeductionNumberBaby() {
-    if (this.babyPassengerCount > 0) {
-      this.babyPassengerCount--
+  increaseChildPerson() {
+    if (this.validateIncreaseChildPersonCount()) {
+      this.childPersonCount++;
+      this.allPersonCount++;
     }
   }
 
+  increaseBabyPerson() {
+
+    if (this.validateIncreaseBabyPersonCount()) {
+      this.babyPersonCount++;
+      this.allPersonCount++;
+    }
+
+  }
+
+  decreaseAdultPerson() {
+    if (this.validateDecreaseAdultPersonCount()) {
+      this.adultPersonCount--;
+      this.allPersonCount--;
+    }
+   
+    
+  }
+
+  decreaseChildPerson() {
+    if (this.validateDecreaseChildPersonCount()) {
+      this.childPersonCount--;
+      this.allPersonCount--;
+    }
+  }
+
+  decreaseBabyPerson() {
+    if (this.validateDecreaseBabyPersonCount()) {
+      this.babyPersonCount--;
+      this.allPersonCount--;
+    }
+  }
+
+  validateIncreasePersonCount(): boolean {
+    return this.allPersonCount < 9;
+  }
+
+  validateIncreaseChildPersonCount(): boolean {
+    return this.allPersonCount < 9 && this.adultPersonCount > 0;
+  }
+
+  validateIncreaseBabyPersonCount(): boolean {
+    return this.allPersonCount < 9 &&  this.babyPersonCount < this.adultPersonCount
+  }
+  
+
+  validateDecreaseAdultPersonCount(): boolean {
+    return this.adultPersonCount > 1;
+  }
+
+  validateDecreaseChildPersonCount(): boolean {
+    return this.childPersonCount > 0;
+  }
+
+  validateDecreaseBabyPersonCount(): boolean {
+    return this.babyPersonCount > 0
+  }
 }
+
+

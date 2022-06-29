@@ -138,14 +138,17 @@
           <div class="flex-1 bg-white">
 
             <div class="flex w-full h-10 bg-gray-200 rounded-xl p-2   items-center ">
-              <span>
+              <span class="flex items-center">
                 <i class="fa-solid fa-lg opacity-50 fa-user-group"></i>
+
+
               </span>
-              <label class="flex">
+              <label class="flex items-center">
 
                 <input #passengerInput
-                  class=" w-full pointer-events-none select-none px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
-                  id="grid-password" type="text" value=" 1 مسافر">
+                  class=" w-1/3 pointer-events-none select-none pr-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
+                  id="grid-password" type="text" [value]="allPersonCount">
+                <p class="text-sm"> مسافر</p>
               </label>
             </div>
 
@@ -158,8 +161,9 @@
           <!--  -->
 
           <!-- passenger fild  openPassengerLIst-->
-          <!-- [ngClass]="openlist? 'opacity-100 translate-x-0 visible':'opacity-0 translate-x-28'" -->
-          <div *ngIf="openPassengerLIst"
+
+          <div
+            [ngClass]="openPassengerLIst? 'transition duration-300   opacity-100 translate-y-0 visible':' transition duration-300  opacity-0 translate-y-28'"
             class=" fixed lg:absolute lg:top-full  w-full lg:w-80 bottom-0 lg:bottom-auto  left-0  lg:left-6  z-50 mt-3 rounded-t-2xl  lg:rounded-2xl  bg-white">
             <div class="  flex items-center justify-between lg:hidden  text-center p-4 pb-2 border-b w-full">
               <p class="text-sm text-gray-500">تعداد مسافران</p>
@@ -175,12 +179,13 @@
                   <h3>بزرگسال</h3>
                   <p class="text-xs text-zinc-500">(از12 سال به بالا)</p>
                 </div>
-                <div class="flex">
+                <div class="flex ">
                   <button class="bg-blue-200  flex justify-center items-center rounded-lg"
-                    (click)="onAddNumberAdult()"><i class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i></button>
-                  <p class="text-xl mx-6">{{adultPassengerCount}}</p>
+                    (click)="increaseAdultPerson()"><i
+                      class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i></button>
+                  <p class="text-xl w-2 mx-6">{{adultPersonCount}}</p>
                   <button class="bg-blue-200  flex justify-center items-center rounded-lg"
-                    (click)="onDeductionNumberAdult()"><i
+                    (click)="decreaseAdultPerson()"><i
                       class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-minus"></i></button>
                 </div>
               </div>
@@ -192,13 +197,13 @@
                 </div>
                 <div class="flex">
                   <div class="bg-blue-200  flex justify-center items-center rounded-lg">
-                    <button (click)="onAddNumberCild()">
+                    <button (click)="increaseChildPerson()">
                       <i class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i>
                     </button>
                   </div>
-                  <p class="text-xl mx-6">{{childPassengerCount}}</p>
+                  <p class="text-xl w-2 mx-6">{{childPersonCount}}</p>
                   <div class="bg-blue-200  flex justify-center items-center rounded-lg">
-                    <button (click)="onDeductionNumberCild()"><i
+                    <button (click)="decreaseChildPerson()"><i
                         class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-minus"></i>
                     </button>
                   </div>
@@ -211,11 +216,11 @@
                   <p class="text-xs text-zinc-500">(از 10روز تا 2 سال)</p>
                 </div>
                 <div class="flex flex-row">
-                  <button (click)="onAddNumberBaby()"
+                  <button (click)="increaseBabyPerson()"
                     class="bg-blue-200  flex justify-center items-center rounded-lg"><i
                       class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i></button>
-                  <p class="text-xl mx-6">{{babyPassengerCount}}</p>
-                  <button (click)="onDeductionNumberBaby()"
+                  <p class="text-xl w-2 mx-6">{{babyPersonCount}}</p>
+                  <button (click)="decreaseBabyPerson()"
                     class="bg-blue-200  flex justify-center items-center rounded-lg"><i
                       class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-minus"></i>
                   </button>
@@ -235,6 +240,11 @@
 
     </div>
   </div>
+
+  
+  
+ <app-datepicker></app-datepicker>
+ 
   <!-- end form  -->
   <!-- start background -->
   <div class=" hidden lg:block  relative -z-10">
@@ -244,5 +254,7 @@
     </figure>
     <!-- end background -->
   </div>
-  <div *ngIf="openList ||openPassengerLIst" class="opacity-50  lg:block fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
+  <div *ngIf="openList ||openPassengerLIst"
+    class="opacity-50  lg:block fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500"></div>
+
 </div>
