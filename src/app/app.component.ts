@@ -82,6 +82,15 @@ export class AppComponent implements OnInit {
   onClickDateInput() {
     this.openDatePicker = true
   }
+  onclosedatePicker(data: boolean) {
+    this.openDatePicker = data
+
+    if (!data) {
+      this.passengerInput.nativeElement.focus()
+    }
+
+
+  }
 
   // open list passenger
   onOpenPassengerLIst() {

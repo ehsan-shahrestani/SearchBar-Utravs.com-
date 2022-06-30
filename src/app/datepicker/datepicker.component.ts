@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Injectable, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Injectable, OnInit, Output } from '@angular/core';
 
 import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian, NgbDate } from '@ng-bootstrap/ng-bootstrap';
-
-const WEEKDAYS_SHORT = ['دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه', 'یکشنبه'];
+import { Observable, observable } from 'rxjs';
+// ['دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه', 'یکشنبه']
+let WEEKDAYS_SHORT = ['دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه', 'یکشنبه']
+  ;
 const MONTHS = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
 
 @Injectable()
@@ -26,10 +28,28 @@ export class DatepickerComponent implements OnInit {
   model!: NgbDateStruct;
   date!: { year: number, month: number };
 
-  constructor(
-    private calendar: NgbCalendar,
 
-  ) {
+  scrWidth: any;
+
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+    this.scrWidth = window.innerWidth;
+    if (this.scrWidth <= 1024) {
+      this.displayMonths = 1;
+      WEEKDAYS_SHORT = ['د', 'س', 'چ', 'پ', 'ج', 'ش', 'ی']
+    } else {
+      this.displayMonths = 2;
+       WEEKDAYS_SHORT= []
+       WEEKDAYS_SHORT = ['دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه', 'یکشنبه']
+
+    }
+  }
+
+
+  constructor(
+    private calendar: NgbCalendar,) {
+    this.getScreenSize()
 
   }
 
@@ -38,9 +58,16 @@ export class DatepickerComponent implements OnInit {
   showWeekNumbers = false;
   outsideDays = 'hidden';
 
-  @Output() data = new EventEmitter<NgbDateStruct>();
-  ngOnInit(): void {
 
+
+
+
+
+  @Output() data = new EventEmitter<NgbDateStruct>();
+  @Output() closeDatePicker = new EventEmitter<boolean>();
+
+
+  ngOnInit(): void {
 
 
   }
@@ -52,10 +79,12 @@ export class DatepickerComponent implements OnInit {
   }
   selectday() {
     this.data.emit(this.model);
-  }
-onCLICK(){
- this.displayMonths = 1;
+    this.closeDatePicker.emit(false)
 
-}
+  }
+ 
+  onCloseDatePicker() {
+    this.closeDatePicker.emit(false)
+  }
 
 }

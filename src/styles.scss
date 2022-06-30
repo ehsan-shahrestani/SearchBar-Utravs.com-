@@ -40,13 +40,18 @@
 }
 
 
-.ngb-dp-weekday{
-    text-align: left !important;
+.ngb-dp-weekday {
+
+    text-align: right !important;
     font-size: 0.9rem !important;
-    width: 4rem !important;
+    width: 4.6rem !important;
     height: 2.5rem !important;
     font-style: normal !important;
 
+    @media (max-width:768px) {
+        background-color: rgba(236, 236, 236, 0.801) !important;
+        text-align: right !important;
+    }
 }
 
 .ngb-dp-day,
@@ -56,8 +61,16 @@
     text-align: left !important;
     font-size: large !important;
 
+    @media (max-width:1024px) {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+
+    }
 
 }
+
+
+
 
 .ngb-dp-month+.ngb-dp-month .ngb-dp-week {
     padding-left: 0 !important;
@@ -65,7 +78,7 @@
 
 .ngb-dp-day {
     background: #e6e9eb8b !important;
-    border-radius: 0.5rem !important;
+    border-radius: 5px !important;
     margin: 4px !important;
 }
 
@@ -74,14 +87,14 @@
 .bg-primary {
     color: white !important;
     background-color: #0075ff !important;
-    border-radius: 0.5rem !important;
+    border-radius: 5px !important;
 
 
 }
 
 .ngb-dp-day:hover {
     background: #579dd663 !important;
-    border-radius: 0.5rem !important;
+    border-radius: 5px !important;
 }
 
 .ngb-datepicker {
@@ -89,10 +102,12 @@
     background-color: white !important;
 
 }
+
 ngb-datepicker {
-     border: none !important; 
- 
+    border: none !important;
+
 }
+
 .ngb-dp-arrow.right .ngb-dp-navigation-chevron {
     transform: rotate(220deg) !important;
     border-color: black !important;
@@ -123,14 +138,18 @@ ngb-datepicker {
     display: flex !important;
     justify-content: space-evenly !important;
 }
+
 .ngb-dp-week {
     border-radius: 0.25rem !important;
-    display: flex !important ;
-  
+    display: flex !important;
+
 }
+
 .ngb-dp-month {
     @media (max-width:1200px) {
-        
+
         width: 100% !important;
     }
 }
+
+

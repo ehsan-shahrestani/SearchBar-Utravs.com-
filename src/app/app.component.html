@@ -2,7 +2,7 @@
   <!-- start form  -->
   <div [ngClass]="openList  || openPassengerLIst  || openDatePicker ?'  gotop' : ' MainPlace'"
     class=" mx-2  lg:mx-6 z-50  static lg:absolute flex flex-col justify-start left-0 right-0 ">
-    <h1 class="my-10  text-3xl text-white font-yekan-black">بلیط هواپیما</h1>
+    <h1 class="my-10  text-3xl   text-stone-700 lg:text-white font-yekan-black">بلیط هواپیما</h1>
     <div *ngIf="!openList" class=" flex  ">
       <div class="grid grid-cols-3   mb-3">
         <div class=" w-full flex items-center justify-between bg-white  h-10 rounded-xl px-4  ">
@@ -22,11 +22,11 @@
         <!--  -->
       </div>
     </div>
-    <div class=" mb-3 ">
-      <button *ngIf="openList ||openDatePicker" (click)="onCloseList()"><i
-          class=" text-white fa-xl fa-solid fa-x"></i></button>
-    </div>
+    <div class="p-3"> <button *ngIf="openList ||openDatePicker" (click)="onCloseList()"><i
+      class="   text-white fa-xl fa-solid fa-x"></i></button></div>
+    
     <div class="bg-white rounded-xl p-3 w-full  ">
+     
       <div [formGroup]="radioInputForm" class="flex mb-4 justify-start items-center">
         <div class="flex   justify-start items-center">
           <input class="mx-2" type="radio" value="oneWay" name="" id="" formControlName="radioInput">
@@ -142,7 +142,7 @@
             </label>
           </div>
 
-          <app-datepicker (data)="dataDatepicker($event)" *ngIf="openDatePicker" [@fadeInUpOnEnter] [@fadeOutDownOnLeave]></app-datepicker>
+          <app-datepicker (closeDatePicker)="onclosedatePicker($event)" (data)="dataDatepicker($event)" *ngIf="openDatePicker" [@fadeInUpOnEnter] [@fadeOutDownOnLeave]></app-datepicker>
         </div>
 
 
@@ -264,7 +264,7 @@
   <!-- start background -->
   <div class=" hidden lg:block  relative -z-10">
     <figure>
-      <img class=" mx-auto rounded-3xl " src="assets/backgrund/flight.jpg" alt="flight" width="1200" height="375"
+      <img  [ngClass]="openList  || openPassengerLIst  || openDatePicker ?'  blur-sm transition duration-500  ' : ' transition duration-500 '"  class=" mx-auto rounded-3xl " src="assets/backgrund/flight.jpg" alt="flight" width="1200" height="375"
         loading="lazy">
     </figure>
     <!-- end background -->
