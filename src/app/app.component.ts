@@ -1,19 +1,24 @@
 import { Component, ElementRef, Injectable, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian } from '@ng-bootstrap/ng-bootstrap';
 
 
-
+import { fadeInUpOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
- 
+  animations: [
+    fadeInUpOnEnterAnimation({ duration: 500, delay: 100 }),
+    fadeOutOnLeaveAnimation(),
+
+  ]
+
 })
 export class AppComponent implements OnInit {
   model!: NgbDateStruct;
-  date!: {year: number, month: number};
+  date!: { year: number, month: number };
   title = 'fatap-interview';
 
   Innercitys: string[] = ["تهران", "شیراز", "بوشهر", "مشهد", "کیش", "سمنان"]
@@ -21,6 +26,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild('orginInput') orginInput!: ElementRef;
   @ViewChild('passengerInput') passengerInput!: ElementRef;
+  @ViewChild('dateInput') dateInput!: ElementRef;
 
   dropdownState: 'left' | 'right' = 'right';
   PlaceForm!: FormGroup
@@ -34,6 +40,8 @@ export class AppComponent implements OnInit {
 
   openList: boolean = false
   openPassengerLIst: boolean = false
+  openDatePicker: boolean = false
+  //
 
   constructor(
     private fb: FormBuilder
@@ -49,7 +57,10 @@ export class AppComponent implements OnInit {
       radioInput: ["oneWay"]
     })
 
+    console.log( this.dataDatePicker);
+    
   }
+
   onChangeAmountInput() {
     let des = this.PlaceForm.controls['destination'].value
     let origin = this.PlaceForm.controls['origin'].value
@@ -57,30 +68,49 @@ export class AppComponent implements OnInit {
     this.PlaceForm.controls['destination'].setValue(origin)
     this.PlaceForm.controls['origin'].setValue(temp)
   }
+  onCloseList() {
+    this.openList = false
+    this.openDatePicker = false
+    this.openPassengerLIst = false
+  }
+//  open date picker
+  onOpenDatepicker() {
+    this.openDatePicker = true
+    this.openPassengerLIst = false
+    this.openList = false
+  }
+  onClickDateInput(){
+    this.openDatePicker = true
+  }
 
+  // open list passenger
+  onOpenPassengerLIst() {
+    this.openPassengerLIst = true
+    this.openList = false
+    this.openDatePicker = false
+
+  }
+  onClickPassengerInput(){
+    this.openPassengerLIst = true
+  }
+
+  // open list city
   onOpenList() {
     this.openList = !this.openList
   }
-  onOpenDatepicker() {
-
-  }
-  onOpenPassengerLIst() {
-    this.openPassengerLIst = !this.openPassengerLIst
-
-  }
-
-
-
   onClickDestination() {
     this.onOpenList()
     this.dropdownState = 'right'
     this.openPassengerLIst = false
+    this.openDatePicker = false
   }
 
   onClickOrigin() {
     this.onOpenList()
     this.dropdownState = 'left'
     this.openPassengerLIst = false
+    this.openDatePicker = false
+
 
   }
 
@@ -93,8 +123,11 @@ export class AppComponent implements OnInit {
       this.orginInput.nativeElement.focus();
     }
     if (targetField == 'origin' && screen.width >= 1024) {
-      this.passengerInput.nativeElement.focus()
-      this.onOpenPassengerLIst()
+      this.dateInput.nativeElement.focus()
+      debugger
+      this.onOpenDatepicker()
+      this.onOpenList()
+
     }
     this.onOpenList()
   }
@@ -130,8 +163,8 @@ export class AppComponent implements OnInit {
       this.adultPersonCount--;
       this.allPersonCount--;
     }
-   
-    
+
+
   }
 
   decreaseChildPerson() {
@@ -157,9 +190,9 @@ export class AppComponent implements OnInit {
   }
 
   validateIncreaseBabyPersonCount(): boolean {
-    return this.allPersonCount < 9 &&  this.babyPersonCount < this.adultPersonCount
+    return this.allPersonCount < 9 && this.babyPersonCount < this.adultPersonCount
   }
-  
+
 
   validateDecreaseAdultPersonCount(): boolean {
     return this.adultPersonCount > 1;
@@ -172,6 +205,11 @@ export class AppComponent implements OnInit {
   validateDecreaseBabyPersonCount(): boolean {
     return this.babyPersonCount > 0
   }
-}
 
+
+  dataDatePicker! :NgbDateStruct
+  dataDatepicker( data :NgbDateStruct ){
+    this.dataDatePicker= data
+  }
+}
 

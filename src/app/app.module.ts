@@ -7,8 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DatepickerComponent } from './datepicker/datepicker.component';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +19,7 @@ import { DatepickerComponent } from './datepicker/datepicker.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    BrowserAnimationsModule
     
   ],
   providers: [],

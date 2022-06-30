@@ -1,11 +1,35 @@
-<div  class=" z-50  mt-2 bg-slate-50 absolute top-full left-0 w-full  rounded-xl   ">
+<div class=" z-50  mt-3 bg-slate-50 absolute top-full left-0 w-full  rounded-xl   ">
 
-    <ngb-datepicker #dp  [(ngModel)]="model" class="w-full rounded-xl" [firstDayOfWeek]="6" [displayMonths]="displayMonths" [navigation]="navigation"
-      [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
+  <ngb-datepicker #dp [(ngModel)]="model" class="w-full rounded-xl" [firstDayOfWeek]="6" [displayMonths]="displayMonths"
+    [navigation]="navigation" [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
 
-     
-    </ngb-datepicker>
 
+  </ngb-datepicker>
+  <div class="flex justify-between p-4">
+
+    <div class="   ">
+      <button
+        class=" mx-2  py-2 px-6 h-10 rounded-lg  bg-white text-gray-600 border-gray-600  hover:bg-gray-600 hover:text-white border text-center  hover:bg-gradient-to- text-lg ">
+        <p>تغییر به تقویم میلادی</p>
+        <p *ngIf="false"> تغییر به تقویم شمسی</p>
+
+      </button>
+      <button (click)="selectToday()"
+        class="  py-2 px-6 h-10 rounded-lg  bg-white text-gray-600 border-gray-600  hover:bg-gray-600 hover:text-white border text-center  hover:bg-gradient-to- text-lg ">برو
+        به امروز</button>
+    </div>
+    <div class="   ">
+      <button
+        class="  py-2 px-10 h-10 rounded-lg  bg-gradient-to-tl from-orange-500 to-orange-300 text-white  hover:bg-gradient-to- text-lg ">تایید</button>
+    </div>
   </div>
-  <!-- <pre>Month: {{ date.month }}.{{ date.year }}</pre> -->
-  <!-- <pre>Model: {{ model | json }}</pre> -->
+
+  <!-- <h1>Model: {{ model | json }}</h1> -->
+</div>
+
+<!-- <div  class="bg-yellow-500">
+
+
+  <input  [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+ 
+</div> -->

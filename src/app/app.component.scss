@@ -12,9 +12,9 @@ input:-webkit-autofill {
 
 .gotop {
     bottom: calc(100% * 200 / 500);
-    transition: all .6s .3s cubic-bezier(.38,.005,.215,1),z-index .3s cubic-bezier(.38,.005,.215,1);
+    transition: all .5s .3s cubic-bezier(.38,.005,.215,1),z-index .3s cubic-bezier(.38,.005,.215,1);
 }
 .MainPlace{
     bottom: calc(-100% * 50 / 500);
-    transition: all .6s .3s cubic-bezier(.38,.005,.215,1),z-index .3s cubic-bezier(.38,.005,.215,1);
+    transition: all .5s .3s cubic-bezier(.38,.005,.215,1),z-index .3s cubic-bezier(.38,.005,.215,1);
 }

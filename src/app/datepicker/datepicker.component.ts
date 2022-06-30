@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, EventEmitter, Injectable, OnInit, Output } from '@angular/core';
 
 import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian } from '@ng-bootstrap/ng-bootstrap';
 
@@ -33,10 +33,12 @@ export class DatepickerComponent implements OnInit {
   showWeekNumbers = false;
   outsideDays = 'visible';
 
+  @Output() data = new EventEmitter<NgbDateStruct>();
   ngOnInit(): void {
-    let x = this.model
-   
-   
+  }
+  selectToday() {
+    // this.model = this.calendar.getToday();
+    this.data.emit(this.model);
 
   }
 
