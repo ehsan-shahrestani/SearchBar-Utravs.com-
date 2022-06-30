@@ -124,7 +124,7 @@ export class AppComponent implements OnInit {
     }
     if (targetField == 'origin' && screen.width >= 1024) {
       this.dateInput.nativeElement.focus()
-      debugger
+      
       this.onOpenDatepicker()
       this.onOpenList()
 
@@ -210,6 +210,7 @@ export class AppComponent implements OnInit {
   dataDatePicker! :NgbDateStruct
   dataDatepicker( data :NgbDateStruct ){
     this.dataDatePicker= data
+    this.onOpenDatepicker()
   }
 }
 

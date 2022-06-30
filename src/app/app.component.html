@@ -74,7 +74,7 @@
           <!-- auto compelet -->
           <!-- [ngClass]="openlist? 'opacity-100 translate-x-0 visible':'opacity-0 translate-x-28'" -->
           <div *ngIf="openList" [@fadeInUpOnEnter]
-            class=" top-0 left-0  lg:mt-3 fixed w-full h-full lg:h-80 overflow-auto  lg:absolute z-50 rounded-none lg:rounded-lg  lg:w-80 bg-white lg:top-full"
+            class=" top-0 left-0  lg:mt-1 fixed w-full    lg:absolute z-50 rounded-none lg:rounded-lg  lg:w-80 bg-white lg:top-full"
             [ngClass]="{'lg:right-6 ':dropdownState=='right','lg:right-60':dropdownState=='left'}">
             <!-- start header -->
             <div class=" flex items-center justify-between   p-4 pb-2 border-b w-full">
@@ -82,31 +82,40 @@
               <button class=" block lg:hidden " (click)="onOpenList()"><i class=" fa-lg fa-solid fa-x"></i></button>
             </div>
             <!-- end header -->
-            <div class="grid grid-flow-col  ">
+
+            
+            <div class="flex  ">
               <!-- start Inner cities -->
-              <div class="  pt-3 grid grid-cols-1 text-center gap-4">
-                <div class="bg-gray-200 text-right">
-                  <p class=" p-2 text-sm text-blue-700">شهر های پرتردد داخلی</p>
-                </div>
-                <span (click)='onSelectItem(city)' *ngFor="let city of Innercitys"
-                  class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center">
-                  <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
-                  {{city}}
-                </span>
+
+              <div class=" flex h-60  overflow-auto ">
+                
+                              <div class="  pt-3 grid grid-cols-1 text-center gap-4">
+                                <div class="bg-gray-100 text-right sticky top-0">
+                                  <p class=" p-2 text-sm text-blue-500 font-yekan-regular">شهر های پرتردد داخلی</p>
+                                </div>
+                                <span (click)='onSelectItem(city)' *ngFor="let city of Innercitys"
+                                  class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center">
+                                  <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
+                                  {{city}}
+                                </span>
+                              </div>
+                              <!-- start Inner cities -->
+                              <!-- start Foreign cities -->
+                              <div class=" pt-3 grid grid-cols-1 text-center gap-4">
+                                <div class="bg-gray-100 text-right sticky top-0 ">
+                                  <p class="p-2 text-sm text-blue-500 font-yekan-regular  ">شهر های پرتردد خارجی</p>
+                                </div>
+                                <p class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center"
+                                  *ngFor="let city of Foreigncitys" (click)='onSelectItem(city)'>
+                                  <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
+                                  {{city}}
+                                </p>
+                              </div>
+                              <!-- start Foreign cities -->
+
               </div>
-              <!-- start Inner cities -->
-              <!-- start Foreign cities -->
-              <div class=" pt-3 grid grid-cols-1 text-center gap-4">
-                <div class="bg-gray-200 text-right  ">
-                  <p class="p-2 text-sm text-blue-700">شهر های پرتردد خارجی</p>
-                </div>
-                <p class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center"
-                  *ngFor="let city of Foreigncitys" (click)='onSelectItem(city)'>
-                  <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
-                  {{city}}
-                </p>
-              </div>
-              <!-- start Foreign cities -->
+            
+
             </div>
           </div>
           <!-- auto compelet -->
@@ -121,14 +130,14 @@
               <i class="fa-solid opacity-50 fa-lg fa-calendar-days"></i>
             </span>
             <label class="flex">
-              <input  (focus)="onOpenDatepicker()" [(ngModel)]="dataDatePicker" ngbDatepicker #d="ngbDatepicker"
+              <input   readonly  (focus)="onOpenDatepicker()" [(ngModel)]="dataDatePicker" ngbDatepicker #d="ngbDatepicker"
                 (click)="onClickDateInput()" #dateInput autocomplete="off"
-                class=" w-full px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
-                id="grid-password" type="text" placeholder="تاریخ رفت">
+                class=" pointer-events-none user-select-none  w-full px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
+                id="grid-password  " type="text"    placeholder="تاریخ رفت">
             </label>
             <label>
-              <input autocomplete="off"
-                class=" w-full block  bg-transparent   text-gray-700   focus:border-gray-600  rounded-lg py-2  leading-tight focus:outline-none focus:bg-transparent "
+              <input readonly  autocomplete="off"
+                class=" pointer-events-none user-select-none  w-full block  bg-transparent   text-gray-700   focus:border-gray-600  rounded-lg py-2  leading-tight focus:outline-none focus:bg-transparent "
                 id="grid-password" type="text" placeholder="تاریخ برگشت">
             </label>
           </div>
@@ -171,7 +180,7 @@
           <!-- passenger fild  openPassengerLIst -->
 
           <div *ngIf="openPassengerLIst" [@fadeInUpOnEnter]
-            class=" fixed lg:absolute lg:top-full  w-full lg:w-80 bottom-0 lg:bottom-auto  left-0  lg:left-6  z-50 mt-3 rounded-t-2xl  lg:rounded-2xl  bg-white">
+            class=" fixed lg:absolute lg:top-full  w-full lg:w-80 bottom-0 lg:bottom-auto  left-0  lg:left-6  z-50 mt-1 rounded-t-2xl  lg:rounded-2xl  bg-white">
             <div class="  flex items-center justify-between lg:hidden  text-center p-4 pb-2 border-b w-full">
               <p class="text-sm text-gray-500">تعداد مسافران</p>
               <button (click)="onOpenPassengerLIst()">

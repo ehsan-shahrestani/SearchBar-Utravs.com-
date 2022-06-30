@@ -1,6 +1,6 @@
-<div class=" z-50  mt-3 bg-slate-50 absolute top-full left-0 w-full  rounded-xl   ">
+<div class=" z-50  mt-1 bg-slate-50 absolute top-full left-0 w-full  rounded-xl   ">
 
-  <ngb-datepicker #dp [(ngModel)]="model" class="w-full rounded-xl" [firstDayOfWeek]="6" [displayMonths]="displayMonths"
+  <ngb-datepicker    (dateSelect)="selectday()"  #dp [(ngModel)]="model" class="w-full " [firstDayOfWeek]="6" [displayMonths]="displayMonths"
     [navigation]="navigation" [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
 
 
@@ -24,12 +24,9 @@
     </div>
   </div>
 
-  <!-- <h1>Model: {{ model | json }}</h1> -->
 </div>
 
-<!-- <div  class="bg-yellow-500">
 
 
-  <input  [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
- 
-</div> -->
+
+

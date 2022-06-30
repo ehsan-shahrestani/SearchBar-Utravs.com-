@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Injectable, OnInit, Output } from '@angular/core';
 
-import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 const WEEKDAYS_SHORT = ['دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه', 'یکشنبه'];
 const MONTHS = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
@@ -25,21 +25,36 @@ export class NgbDatepickerI18nPersian extends NgbDatepickerI18n {
 export class DatepickerComponent implements OnInit {
   model!: NgbDateStruct;
   date!: { year: number, month: number };
+
+
+
+
   constructor(
-    private calendar: NgbCalendar,) { }
+    private calendar: NgbCalendar,
+
+  ) {
+
+  }
 
   displayMonths = 2;
   navigation = 'arrows';
   showWeekNumbers = false;
-  outsideDays = 'visible';
+  outsideDays = 'hidden';
 
   @Output() data = new EventEmitter<NgbDateStruct>();
   ngOnInit(): void {
+
+
+
   }
   selectToday() {
-    // this.model = this.calendar.getToday();
+    this.model = this.calendar.getToday();
+    this.data.emit(this.model);
+
+
+  }
+  selectday() {
     this.data.emit(this.model);
 
   }
-
 }
