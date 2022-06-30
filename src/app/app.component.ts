@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian } from '@ng-bootstrap/ng-bootstrap';
 
 
-import { fadeInUpOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
+import { fadeInUpOnEnterAnimation, fadeOutDownOnLeaveAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,8 @@ import { fadeInUpOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-anima
   styleUrls: ['./app.component.scss'],
   animations: [
     fadeInUpOnEnterAnimation({ duration: 500, delay: 100 }),
-    fadeOutOnLeaveAnimation(),
 
+    fadeOutDownOnLeaveAnimation({ duration: 500, delay: 100 }),
   ]
 
 })
@@ -57,8 +57,8 @@ export class AppComponent implements OnInit {
       radioInput: ["oneWay"]
     })
 
-    console.log( this.dataDatePicker);
-    
+    console.log(this.dataDatePicker);
+
   }
 
   onChangeAmountInput() {
@@ -73,13 +73,13 @@ export class AppComponent implements OnInit {
     this.openDatePicker = false
     this.openPassengerLIst = false
   }
-//  open date picker
+  //  open date picker
   onOpenDatepicker() {
     this.openDatePicker = true
     this.openPassengerLIst = false
     this.openList = false
   }
-  onClickDateInput(){
+  onClickDateInput() {
     this.openDatePicker = true
   }
 
@@ -90,8 +90,13 @@ export class AppComponent implements OnInit {
     this.openDatePicker = false
 
   }
-  onClickPassengerInput(){
+  onClickPassengerInput() {
     this.openPassengerLIst = true
+  }
+
+  onClosePassengerLIst() {
+    this.openPassengerLIst = false
+
   }
 
   // open list city
@@ -99,14 +104,14 @@ export class AppComponent implements OnInit {
     this.openList = !this.openList
   }
   onClickDestination() {
-    this.onOpenList()
+    this.openList = true
     this.dropdownState = 'right'
     this.openPassengerLIst = false
     this.openDatePicker = false
   }
 
   onClickOrigin() {
-    this.onOpenList()
+    this.openList = true
     this.dropdownState = 'left'
     this.openPassengerLIst = false
     this.openDatePicker = false
@@ -121,10 +126,11 @@ export class AppComponent implements OnInit {
 
     if (targetField == 'destination' && screen.width >= 1024) {
       this.orginInput.nativeElement.focus();
+      this.onOpenList()
     }
     if (targetField == 'origin' && screen.width >= 1024) {
       this.dateInput.nativeElement.focus()
-      
+
       this.onOpenDatepicker()
       this.onOpenList()
 
@@ -207,9 +213,9 @@ export class AppComponent implements OnInit {
   }
 
 
-  dataDatePicker! :NgbDateStruct
-  dataDatepicker( data :NgbDateStruct ){
-    this.dataDatePicker= data
+  dataDatePicker!: NgbDateStruct
+  dataDatepicker(data: NgbDateStruct) {
+    this.dataDatePicker = data
     this.onOpenDatepicker()
   }
 }

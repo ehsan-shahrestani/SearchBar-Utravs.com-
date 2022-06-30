@@ -1,10 +1,14 @@
-<div class=" z-50  mt-1 bg-slate-50 absolute top-full left-0 w-full  rounded-xl   ">
+<div     class="  lg:mt-1 bg-slate-50  z-50  fixed lg:absolute top-0 h-screen lg:h-fit left-0 lg:top-full lg:left-0 w-full rounded-none  lg:rounded-2xl   ">
+  <div  class=" border-b   lg:p-8   border-gray-200">
+   
+    <ngb-datepicker (dateSelect)="selectday()" #dp [(ngModel)]="model" class="w-full bg-white rounded-xl  "
+      [firstDayOfWeek]="6"  [displayMonths]="displayMonths" [navigation]="navigation" [showWeekNumbers]="showWeekNumbers"
+      [outsideDays]="outsideDays">
 
-  <ngb-datepicker    (dateSelect)="selectday()"  #dp [(ngModel)]="model" class="w-full " [firstDayOfWeek]="6" [displayMonths]="displayMonths"
-    [navigation]="navigation" [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
 
+    </ngb-datepicker>
 
-  </ngb-datepicker>
+  </div>
   <div class="flex justify-between p-4">
 
     <div class="   ">
@@ -19,14 +23,9 @@
         به امروز</button>
     </div>
     <div class="   ">
-      <button
-        class="  py-2 px-10 h-10 rounded-lg  bg-gradient-to-tl from-orange-500 to-orange-300 text-white  hover:bg-gradient-to- text-lg ">تایید</button>
+      <button (click)="onCLICK()"
+        class="  py-1 px-16 h-10 rounded-lg  bg-gradient-to-tl from-orange-500 to-orange-300 text-white  hover:bg-gradient-to- text-lg ">تایید</button>
     </div>
   </div>
 
 </div>
-
-
-
-
-

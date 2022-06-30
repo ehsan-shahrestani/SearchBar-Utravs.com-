@@ -64,9 +64,9 @@
 }
 
 .ngb-dp-day {
-    background: #e6e9eb4d !important;
+    background: #e6e9eb8b !important;
     border-radius: 0.5rem !important;
-    margin: 2px !important;
+    margin: 4px !important;
 }
 
 
@@ -89,7 +89,10 @@
     background-color: white !important;
 
 }
-
+ngb-datepicker {
+     border: none !important; 
+ 
+}
 .ngb-dp-arrow.right .ngb-dp-navigation-chevron {
     transform: rotate(220deg) !important;
     border-color: black !important;
@@ -119,4 +122,15 @@
 .ngb-dp-months {
     display: flex !important;
     justify-content: space-evenly !important;
+}
+.ngb-dp-week {
+    border-radius: 0.25rem !important;
+    display: flex !important ;
+  
+}
+.ngb-dp-month {
+    @media (max-width:1200px) {
+        
+        width: 100% !important;
+    }
 }

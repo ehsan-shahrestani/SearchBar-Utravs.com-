@@ -26,9 +26,6 @@ export class DatepickerComponent implements OnInit {
   model!: NgbDateStruct;
   date!: { year: number, month: number };
 
-
-
-
   constructor(
     private calendar: NgbCalendar,
 
@@ -55,6 +52,10 @@ export class DatepickerComponent implements OnInit {
   }
   selectday() {
     this.data.emit(this.model);
-
   }
+onCLICK(){
+ this.displayMonths = 1;
+
+}
+
 }
