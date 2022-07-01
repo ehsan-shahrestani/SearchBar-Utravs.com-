@@ -22,18 +22,18 @@
         <!--  -->
       </div>
     </div>
-    <div class="p-3"> <button *ngIf="openList ||openDatePicker" (click)="onCloseList()"><i
+    <div class="p-3"> <button *ngIf="openList ||openDatePicker || openPassengerLIst" (click)="onCloseList()"><i
       class="   text-white fa-xl fa-solid fa-x"></i></button></div>
     
     <div class="bg-white rounded-xl p-3 w-full  ">
      
       <div [formGroup]="radioInputForm" class="flex mb-4 justify-start items-center">
         <div class="flex   justify-start items-center">
-          <input class="mx-2" type="radio" value="oneWay" name="" id="" formControlName="radioInput">
+          <input (click)="onChangeOneWayOrTwoWay('oneWay')" class="mx-2" type="radio" value="oneWay" name="" id="" formControlName="radioInput">
           <label for="">یک طرفه</label>
         </div>
         <div class="mr-10 flex  justify-start items-center">
-          <input class="mx-2" type="radio" name="" value="twoWay" id="" formControlName="radioInput">
+          <input (click)="onChangeOneWayOrTwoWay('twoWay')" class="mx-2" type="radio" name="" value="twoWay" id="" formControlName="radioInput">
           <label for="">دوطرفه</label>
         </div>
       </div>

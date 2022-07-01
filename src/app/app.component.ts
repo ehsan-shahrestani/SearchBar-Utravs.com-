@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   @ViewChild('dateInput') dateInput!: ElementRef;
 
   dropdownState: 'left' | 'right' = 'right';
-  
+
   PlaceForm!: FormGroup
   radioInputForm!: FormGroup
 
@@ -58,7 +58,11 @@ export class AppComponent implements OnInit {
       radioInput: ["oneWay"]
     })
 
-    console.log(this.dataDatePicker);
+    console.log(this.radioInputForm.value);
+
+  }
+  onChangeOneWayOrTwoWay(data: string) {
+    console.log(data);
 
   }
 
