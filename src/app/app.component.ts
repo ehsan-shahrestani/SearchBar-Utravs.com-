@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
   @ViewChild('dateInput') dateInput!: ElementRef;
 
   dropdownState: 'left' | 'right' = 'right';
+  
   PlaceForm!: FormGroup
   radioInputForm!: FormGroup
 
