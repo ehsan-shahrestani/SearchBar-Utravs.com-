@@ -1,5 +1,5 @@
 <div
-  class="  lg:mt-1 bg-white z-50  fixed lg:absolute top-0 h-screen lg:h-fit left-0 lg:top-full lg:left-0 w-full rounded-none  lg:rounded-2xl ">
+  class="  font-yekan-regular lg:mt-1 bg-white z-50  fixed lg:absolute top-0 h-screen lg:h-fit left-0 lg:top-full lg:left-0 w-full rounded-none  lg:rounded-2xl ">
 
   <div class="bg-white block  lg:hidden p-4 text-left  ">
     <button (click)="onCloseDatePicker()">
@@ -10,13 +10,40 @@
 
 
   <div class=" border-b  p-2 lg:p-8   border-gray-200">
+    <div *ngIf="roundTrip">
 
-    <ngb-datepicker (dateSelect)="selectday()" #dp [(ngModel)]="model" class="w-full bg-white rounded-xl  "
-      [firstDayOfWeek]="6" [displayMonths]="displayMonths" [navigation]="navigation" [showWeekNumbers]="showWeekNumbers"
-      [outsideDays]="outsideDays">
+      <ngb-datepicker [minDate]="mindate"  (dateSelect)="selectday()" #dp [(ngModel)]="model" class="w-full bg-white rounded-xl  "
+        [firstDayOfWeek]="6" [displayMonths]="displayMonths" [navigation]="navigation"
+        [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
 
 
-    </ngb-datepicker>
+      </ngb-datepicker>
+
+    </div>
+
+    <div *ngIf="!roundTrip">
+      <ngb-datepicker #dp [firstDayOfWeek]="6" (dateSelect)="onDateSelection($event)" [displayMonths]="displayMonths"
+        [dayTemplate]="t" [navigation]="navigation" [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
+      </ngb-datepicker>
+
+      <ng-template #t let-date let-focused="focused">
+        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+          [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+          (mouseleave)="hoveredDate = null">
+          {{ date.day }}
+        </span>
+      </ng-template>
+
+
+      <div style="direction: ltr;" class=" text-right">
+
+        <h1> {{(formatter.format(fromDate))}} : تاریخ رفت </h1>
+        <h1>{{(formatter.format(toDate))}} :تاریخ برگشت</h1>
+      </div>
+
+
+
+    </div>
 
   </div>
   <div class="flex justify-center lg:justify-between p-3">
@@ -28,7 +55,8 @@
         <p *ngIf="false"> تغییر به تقویم شمسی</p>
 
       </button>
-      <button  (click)="selectToday()"
+
+      <button (click)="selectToday() "
         class="  py-2 px-6 h-10 rounded-lg  bg-white text-gray-600 border-gray-600  hover:bg-gray-600 hover:text-white border text-center  hover:bg-gradient-to- text-lg ">برو
         به امروز</button>
     </div>

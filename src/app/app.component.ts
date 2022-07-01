@@ -1,8 +1,6 @@
 import { Component, ElementRef, Injectable, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian } from '@ng-bootstrap/ng-bootstrap';
-
-
 import { fadeInUpOnEnterAnimation, fadeOutDownOnLeaveAnimation } from 'angular-animations';
 
 @Component({
@@ -17,6 +15,10 @@ import { fadeInUpOnEnterAnimation, fadeOutDownOnLeaveAnimation } from 'angular-a
 
 })
 export class AppComponent implements OnInit {
+
+
+
+
   model!: NgbDateStruct;
   date!: { year: number, month: number };
   title = 'fatap-interview';
@@ -47,6 +49,10 @@ export class AppComponent implements OnInit {
   constructor(
     private fb: FormBuilder
   ) { }
+  form!: FormGroup
+
+  rundeTrip: boolean = true
+
   ngOnInit(): void {
 
     this.PlaceForm = this.fb.group({
@@ -58,14 +64,15 @@ export class AppComponent implements OnInit {
       radioInput: ["oneWay"]
     })
 
-    console.log(this.radioInputForm.value);
+    this.radioInputForm.controls['radioInput'].valueChanges.subscribe(res => {
+      if (res == "oneWay") {
+        this.rundeTrip = true
+      } else if (res == "twoway") {
+        this.rundeTrip = false
+      }
+    })
 
   }
-  onChangeOneWayOrTwoWay(data: string) {
-    console.log(data);
-
-  }
-
   onChangeAmountInput() {
     let des = this.PlaceForm.controls['destination'].value
     let origin = this.PlaceForm.controls['origin'].value
@@ -182,9 +189,11 @@ export class AppComponent implements OnInit {
     if (this.validateDecreaseAdultPersonCount()) {
       this.adultPersonCount--;
       this.allPersonCount--;
+      if (this.babyPersonCount > this.adultPersonCount) {
+       this.babyPersonCount --
+       this.allPersonCount --
+      }
     }
-
-
   }
 
   decreaseChildPerson() {
@@ -202,15 +211,15 @@ export class AppComponent implements OnInit {
   }
 
   validateIncreasePersonCount(): boolean {
-    return this.allPersonCount < 9;
+    return (this.allPersonCount - this.babyPersonCount) < 9;
   }
 
   validateIncreaseChildPersonCount(): boolean {
-    return this.allPersonCount < 9 && this.adultPersonCount > 0;
+    return (this.allPersonCount - this.babyPersonCount) < 9 && this.adultPersonCount > 0;
   }
 
   validateIncreaseBabyPersonCount(): boolean {
-    return this.allPersonCount < 9 && this.babyPersonCount < this.adultPersonCount
+    return this.babyPersonCount < this.adultPersonCount
   }
 
 
