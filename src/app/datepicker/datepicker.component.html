@@ -22,7 +22,7 @@
     </div>
 
     <div *ngIf="!roundTrip">
-      <ngb-datepicker #dp [firstDayOfWeek]="6" (dateSelect)="onDateSelection($event)" [displayMonths]="displayMonths"
+      <ngb-datepicker  [minDate]="mindate"  #dp [firstDayOfWeek]="6" (dateSelect)="onDateSelection($event)" [displayMonths]="displayMonths"
         [dayTemplate]="t" [navigation]="navigation" [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
       </ngb-datepicker>
 

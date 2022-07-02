@@ -27,7 +27,9 @@ export class NgbDatepickerI18nPersian extends NgbDatepickerI18n {
 export class DatepickerComponent implements OnInit {
   @ViewChild('dp') dp!: NgbDatepicker;
 
-  @Output() data = new EventEmitter<NgbDateStruct>();
+  @Output() dataOneWay = new EventEmitter<NgbDateStruct>();
+  @Output() dataToDate = new EventEmitter<NgbDate>();
+  @Output() dataFromDate = new EventEmitter<NgbDate>();
   @Output() closeDatePicker = new EventEmitter<boolean>();
   @Input() roundTrip!: boolean
   @HostListener('window:resize', ['$event'])
@@ -67,22 +69,26 @@ export class DatepickerComponent implements OnInit {
 
 
 
-  mindate!:NgbDate 
+  mindate!: NgbDate
 
   ngOnInit(): void {
     this.mindate = this.calendar.getToday();
-
   }
   // start range
 
   onDateSelection(date: NgbDate) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date;
+      this.dataFromDate.emit(date)
     } else if (this.fromDate && !this.toDate && date.after(this.fromDate)) {
       this.toDate = date;
+      this.dataToDate.emit(date)
+
     } else {
       this.toDate = null;
       this.fromDate = date;
+      this.dataFromDate.emit(date)
+
     }
   }
 
@@ -105,12 +111,12 @@ export class DatepickerComponent implements OnInit {
   // end renge
   selectToday() {
     this.model = this.calendar.getToday();
-    this.data.emit(this.model);
+    this.dataOneWay.emit(this.model);
     this.dp.navigateTo()
 
   }
   selectday() {
-    this.data.emit(this.model);
+    this.dataOneWay.emit(this.model);
     // this.closeDatePicker.emit(false)
   }
 

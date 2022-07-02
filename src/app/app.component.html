@@ -124,8 +124,8 @@
 
         <div class="col-span-12 lg:col-span-3 ">
 
-
-          <div class="flex h-10  bg-gray-200 rounded-xl p-2   items-center  justify-between">
+          <!-- یکطرفه -->
+          <div *ngIf="rundeTrip" class="flex h-10  bg-gray-200 rounded-xl p-2   items-center  justify-between">
             <span>
               <i class="fa-solid opacity-50 fa-lg fa-calendar-days"></i>
             </span>
@@ -136,14 +136,36 @@
                 id="grid-password  " type="text" placeholder="تاریخ رفت">
             </label>
             <label>
-              <input readonly autocomplete="off"
+              <input disabled readonly autocomplete="off"
                 class=" font-yekan-regular pointer-events-none user-select-none  w-full block  bg-transparent   text-gray-700   focus:border-gray-600  rounded-lg py-2  leading-tight focus:outline-none focus:bg-transparent "
                 id="grid-password" type="text" placeholder="تاریخ برگشت">
             </label>
           </div>
 
-          <app-datepicker [roundTrip]="rundeTrip"   (closeDatePicker)="onclosedatePicker($event)" (data)="dataDatepicker($event)"
-            *ngIf="openDatePicker" [@fadeInUpOnEnter] [@fadeOutDownOnLeave]></app-datepicker>
+          <!-- دوطرفه -->
+          <div *ngIf="!rundeTrip" class="flex h-10  bg-gray-200 rounded-xl p-2   items-center  justify-between">
+            <span>
+              <i class="fa-solid opacity-50 fa-lg fa-calendar-days"></i>
+            </span>
+            <label class="flex">
+              <input readonly (focus)="onOpenDatepicker()" [value]="(formatter.format(dataFromDate))" (click)="onClickDateInput()" #dateInput
+                autocomplete="off"
+                class=" font-yekan-regular pointer-events-none user-select-none  w-full px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
+                id="grid-password  " type="text" placeholder="تاریخ رفت">
+            </label>
+            <label>
+              <input readonly autocomplete="off" [value]="(formatter.format(dataToDate))"
+                class=" font-yekan-regular pointer-events-none user-select-none  w-full block  bg-transparent   text-gray-700   focus:border-gray-600  rounded-lg py-2  leading-tight focus:outline-none focus:bg-transparent "
+                id="grid-password" type="text" placeholder="تاریخ برگشت">
+            </label>
+          </div>
+
+
+
+
+          <app-datepicker [roundTrip]="rundeTrip" (closeDatePicker)="onclosedatePicker($event)"
+            (dataToDate)="dataToDateDatepicker($event)" (dataFromDate)="dataFromDateDatepicker($event)"   (dataOneWay)="dataOneWayDatepicker($event)" *ngIf="openDatePicker" [@fadeInUpOnEnter] [@fadeOutDownOnLeave]>
+          </app-datepicker>
         </div>
 
 
@@ -164,7 +186,7 @@
 
                 <input readonly #passengerInput (focus)="onOpenPassengerLIst()" (click)="onClickPassengerInput()"
                   autocomplete="off"
-                  class="  pointer-events-none user-select-none w-1/6  select-none pr-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
+                  class="  pointer-events-none user-select-none w-2/6  select-none pr-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
                   id="grid-password" type="text" [value]="allPersonCount">
                 <p class=" font-yekan-regular  text-sm"> مسافر</p>
               </label>
@@ -278,5 +300,5 @@
     class="opacity-50  lg:block fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500">
   </div>
 
-  
+
 </div>

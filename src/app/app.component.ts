@@ -1,6 +1,6 @@
 import { Component, ElementRef, Injectable, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbCalendar, NgbDatepickerI18n, NgbCalendarPersian, NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { fadeInUpOnEnterAnimation, fadeOutDownOnLeaveAnimation } from 'angular-animations';
 
 @Component({
@@ -47,7 +47,9 @@ export class AppComponent implements OnInit {
   //
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public formatter: NgbDateParserFormatter
+
   ) { }
   form!: FormGroup
 
@@ -190,8 +192,8 @@ export class AppComponent implements OnInit {
       this.adultPersonCount--;
       this.allPersonCount--;
       if (this.babyPersonCount > this.adultPersonCount) {
-       this.babyPersonCount --
-       this.allPersonCount --
+        this.babyPersonCount--
+        this.allPersonCount--
       }
     }
   }
@@ -237,9 +239,22 @@ export class AppComponent implements OnInit {
 
 
   dataDatePicker!: NgbDateStruct
-  dataDatepicker(data: NgbDateStruct) {
+  dataOneWayDatepicker(data: NgbDateStruct) {
+    // console.log(data);
+    
     this.dataDatePicker = data
     this.onOpenDatepicker()
   }
+
+  dataToDate!:NgbDate
+  dataToDateDatepicker(data:NgbDate){
+    this.dataToDate = data
+  }
+  dataFromDate!:NgbDate
+  dataFromDateDatepicker(data:NgbDate){
+    this.dataFromDate = data
+    
+  }
+
 }
 
