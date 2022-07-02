@@ -54,6 +54,7 @@ export class DatepickerComponent implements OnInit {
     this.getScreenSize()
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getToday()
+    
   }
 
   model!: NgbDateStruct;

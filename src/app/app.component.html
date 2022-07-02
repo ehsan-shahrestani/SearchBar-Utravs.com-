@@ -1,9 +1,9 @@
 <div class="container mb-24   mt-10 mx-auto relative">
   <!-- start form  -->
-  <div [ngClass]="openList  || openPassengerLIst  || openDatePicker ?'  gotop' : ' MainPlace'"
+  <div [ngClass]="openCityList  || openPassengerLIst  || openDatePicker ?'  gotop' : ' MainPlace'"
     class=" mx-2  lg:mx-6 z-50  static lg:absolute flex flex-col justify-start left-0 right-0 ">
     <h1 class="my-10  text-3xl   text-stone-700 lg:text-white font-yekan-black">بلیط هواپیما</h1>
-    <div *ngIf="!openList" class=" flex  ">
+    <div *ngIf="!openCityList" class=" flex  ">
       <div class="grid grid-cols-3   mb-3">
         <div class=" w-full flex items-center justify-between bg-white  h-10 rounded-xl px-4  ">
           <span class="w-full">پرواز</span>
@@ -22,7 +22,7 @@
         <!--  -->
       </div>
     </div>
-    <div class="p-3"> <button *ngIf="openList ||openDatePicker || openPassengerLIst" (click)="onCloseList()"><i
+    <div class="p-3"> <button *ngIf="openCityList ||openDatePicker || openPassengerLIst" (click)="onCloseList()"><i
           class="   text-white fa-xl fa-solid fa-x"></i></button></div>
 
     <div class="bg-white rounded-xl p-3 w-full  ">
@@ -55,7 +55,7 @@
             </div>
             <button (click)=" onChangeAmountInput()"
               class=" bg-slate-300 lg:bg-transparent   rounded-lg rotate-90 transition  duration-500 lg:rotate-0 top-1/2 -translate-y-3 lg:translate-y-0 lg:bottom-0 left-5 lg:right-0 absolute lg:relative  ">
-              <i class=" py-1  fa-solid mx-2 fa-lg text-stone-600 lg:text-blue-600  fa-arrow-right-arrow-left "></i>
+              <i class=" py-1  fa-solid mx-2  text-stone-600 lg:text-blue-600  fa-arrow-right-arrow-left "></i>
 
             </button>
             <div
@@ -73,7 +73,7 @@
           </div>
           <!-- auto compelet -->
           <!-- [ngClass]="openlist? 'opacity-100 translate-x-0 visible':'opacity-0 translate-x-28'" -->
-          <div *ngIf="openList" [@fadeInUpOnEnter] [@fadeOutDownOnLeave]
+          <div *ngIf="openCityList" [@fadeInUpOnEnter] [@fadeOutDownOnLeave]
             class=" top-0 left-0  lg:mt-1 fixed w-full    lg:absolute z-50 rounded-none lg:rounded-2xl  lg:w-80 bg-white lg:top-full"
             [ngClass]="{'lg:right-0 ':dropdownState=='right','lg:right-60':dropdownState=='left'}">
             <!-- start header -->
@@ -221,11 +221,11 @@
                 <div class="flex ">
                   <button class="bg-blue-200  flex justify-center items-center rounded-lg"
                     (click)="increaseAdultPerson()"><i
-                      class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i></button>
+                      class="fa-solid text-blue-800 py-2 px-2  fa-plus"></i></button>
                   <p class="text-xl w-2 mx-6">{{adultPersonCount}}</p>
                   <button class="bg-blue-200  flex justify-center items-center rounded-lg"
                     (click)="decreaseAdultPerson()"><i
-                      class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-minus"></i></button>
+                      class="fa-solid text-blue-800 py-2 px-2 fa-minus"></i></button>
                 </div>
               </div>
 
@@ -237,13 +237,13 @@
                 <div class="flex">
                   <div class="bg-blue-200  flex justify-center items-center rounded-lg">
                     <button (click)="increaseChildPerson()">
-                      <i class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i>
+                      <i class="fa-solid text-blue-800 py-2 px-2  fa-plus"></i>
                     </button>
                   </div>
                   <p class="text-xl w-2 mx-6">{{childPersonCount}}</p>
                   <div class="bg-blue-200  flex justify-center items-center rounded-lg">
                     <button (click)="decreaseChildPerson()"><i
-                        class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-minus"></i>
+                        class="fa-solid text-blue-800 py-2 px-2  fa-minus"></i>
                     </button>
                   </div>
                 </div>
@@ -257,11 +257,11 @@
                 <div class="flex flex-row">
                   <button (click)="increaseBabyPerson()"
                     class="bg-blue-200  flex justify-center items-center rounded-lg"><i
-                      class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-plus"></i></button>
+                      class="fa-solid text-blue-800 py-2 px-2 fa-plus"></i></button>
                   <p class="text-xl w-2 mx-6">{{babyPersonCount}}</p>
                   <button (click)="decreaseBabyPerson()"
                     class="bg-blue-200  flex justify-center items-center rounded-lg"><i
-                      class="fa-solid text-blue-800 py-2 px-2 fa-lg fa-minus"></i>
+                      class="fa-solid text-blue-800 py-2 px-2  fa-minus"></i>
                   </button>
                 </div>
               </div>
@@ -290,13 +290,13 @@
   <div class=" hidden lg:block  relative -z-10">
     <figure>
       <img
-        [ngClass]="openList  || openPassengerLIst  || openDatePicker ?'  blur-sm transition duration-500  ' : ' transition duration-500 '"
+        [ngClass]="openCityList  || openPassengerLIst  || openDatePicker ?'  blur-sm transition duration-500  ' : ' transition duration-500 '"
         class=" mx-auto rounded-3xl " src="assets/backgrund/flight.jpg" alt="flight" width="1200" height="375"
         loading="lazy">
     </figure>
     <!-- end background -->
   </div>
-  <div *ngIf="openList  || openPassengerLIst  || openDatePicker "
+  <div *ngIf="openCityList  || openPassengerLIst  || openDatePicker "
     class="opacity-50  lg:block fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500">
   </div>
 

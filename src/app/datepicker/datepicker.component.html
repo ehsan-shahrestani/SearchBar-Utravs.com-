@@ -12,7 +12,7 @@
   <div class=" border-b  p-2 lg:p-8   border-gray-200">
     <div *ngIf="roundTrip">
 
-      <ngb-datepicker [minDate]="mindate"  (dateSelect)="selectday()" #dp [(ngModel)]="model" class="w-full bg-white rounded-xl  "
+      <ngb-datepicker  [minDate]="mindate"  (dateSelect)="selectday()" #dp [(ngModel)]="model" class="w-full bg-white rounded-xl  "
         [firstDayOfWeek]="6" [displayMonths]="displayMonths" [navigation]="navigation"
         [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
 
@@ -36,9 +36,8 @@
 
 
       <div style="direction: ltr;" class=" text-right">
-
-        <h1> {{(formatter.format(fromDate))}} : تاریخ رفت </h1>
-        <h1>{{(formatter.format(toDate))}} :تاریخ برگشت</h1>
+        <p class="text-md"  > {{(formatter.format(fromDate))}} : تاریخ رفت </p>
+        <p class="text-md" >{{(formatter.format(toDate))}} :تاریخ برگشت</p>
       </div>
 
 
