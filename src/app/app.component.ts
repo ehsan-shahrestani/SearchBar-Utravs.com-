@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
 
   allPersonCount: number = 1
 
-  openList: boolean = false
+  openCityList: boolean = false
   openPassengerLIst: boolean = false
   openDatePicker: boolean = false
   //
@@ -83,7 +83,7 @@ export class AppComponent implements OnInit {
     this.PlaceForm.controls['origin'].setValue(temp)
   }
   onCloseList() {
-    this.openList = false
+    this.openCityList = false
     this.openDatePicker = false
     this.openPassengerLIst = false
   }
@@ -91,7 +91,7 @@ export class AppComponent implements OnInit {
   onOpenDatepicker() {
     this.openDatePicker = true
     this.openPassengerLIst = false
-    this.openList = false
+    this.openCityList = false
   }
   onClickDateInput() {
     this.openDatePicker = true
@@ -109,7 +109,7 @@ export class AppComponent implements OnInit {
   // open list passenger
   onOpenPassengerLIst() {
     this.openPassengerLIst = true
-    this.openList = false
+    this.openCityList = false
     this.openDatePicker = false
 
   }
@@ -124,17 +124,17 @@ export class AppComponent implements OnInit {
 
   // open list city
   onOpenList() {
-    this.openList = !this.openList
+    this.openCityList = !this.openCityList
   }
   onClickDestination() {
-    this.openList = true
+    this.openCityList = true
     this.dropdownState = 'right'
     this.openPassengerLIst = false
     this.openDatePicker = false
   }
 
   onClickOrigin() {
-    this.openList = true
+    this.openCityList = true
     this.dropdownState = 'left'
     this.openPassengerLIst = false
     this.openDatePicker = false
