@@ -1,0 +1,304 @@
+<div class="container mb-24   mt-10 mx-auto relative">
+  <!-- start form  -->
+  <div [ngClass]="openCityList  || openPassengerLIst  || openDatePicker ?'  gotop' : ' MainPlace'"
+    class=" mx-2  lg:mx-6 z-50  static lg:absolute flex flex-col justify-start left-0 right-0 ">
+    <h1 class="my-10  text-3xl   text-stone-700 lg:text-white font-yekan-black">بلیط هواپیما</h1>
+    <div *ngIf="!openCityList" class=" flex  ">
+      <div class="grid grid-cols-3   mb-3">
+        <div class=" w-full flex items-center justify-between bg-white  h-10 rounded-xl px-4  ">
+          <span class="w-full">پرواز</span>
+          <i class=" fa-fw  fa-solid text-slate-700  mx-2  fa-lg   fa-plane-departure"></i>
+        </div>
+        <!--  -->
+        <div class=" flex items-center justify-between bg-slate-700  h-10 rounded-xl px-4 mr-2 ">
+          <span class=" text-white">قطار</span>
+          <i class="fa-solid mx-2 fa-lg text-white fa-train-subway"></i>
+        </div>
+        <!--  -->
+        <div class=" flex items-center justify-between bg-slate-700  h-10 rounded-xl px-4 mr-2  ">
+          <span class=" text-white">هتل</span>
+          <i class="fa-solid mx-2 fa-lg  text-white  fa-couch"></i>
+        </div>
+        <!--  -->
+      </div>
+    </div>
+    <div class="p-3"> <button *ngIf="openCityList ||openDatePicker || openPassengerLIst" (click)="onCloseList()"><i
+          class="   text-white fa-xl fa-solid fa-x"></i></button></div>
+
+    <div class="bg-white rounded-xl p-3 w-full  ">
+
+      <div [formGroup]="radioInputForm" class="flex mb-4 justify-start items-center">
+        <div class="flex   justify-start items-center">
+          <input class="mx-2" type="radio" value="oneWay" name="" id="" formControlName="radioInput">
+          <label for="">یک طرفه</label>
+        </div>
+        <div class="mr-10 flex  justify-start items-center">
+          <input class="mx-2" type="radio" name="" value="twoway" id="" formControlName="radioInput">
+          <label for="">دوطرفه</label>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-3">
+
+        <div [formGroup]="PlaceForm" class="col-span-12 lg:col-span-5 ">
+          <div class="flex flex-col lg:flex-row justify-start relative ">
+            <div
+              class="flex flex-auto h-10  bg-gray-200 rounded-t-xl lg:rounded-xl p-2 items-center  justify-start relative">
+              <span>
+                <i class="fa-solid fa-lg opacity-50  fa-location-dot"></i>
+              </span>
+              <label>
+                <input (focus)="onClickDestination()" autocomplete="off"
+                  class=" font-yekan-regular w-full block  bg-transparent   text-gray-700    rounded-lg py-2 px-3  leading-tight focus:outline-none focus:bg-transparent "
+                  id="grid-password" type="text" placeholder="مبدا را وارد کنید" formControlName="destination">
+              </label>
+            </div>
+            <button (click)=" onChangeAmountInput()"
+              class=" bg-slate-300 lg:bg-transparent   rounded-lg rotate-90 transition  duration-500 lg:rotate-0 top-1/2 -translate-y-3 lg:translate-y-0 lg:bottom-0 left-5 lg:right-0 absolute lg:relative  ">
+              <i class=" py-1  fa-solid mx-2  text-stone-600 lg:text-blue-600  fa-arrow-right-arrow-left "></i>
+
+            </button>
+            <div
+              class="flex h-10 flex-auto bg-gray-200 rounded-b-xl lg:rounded-xl p-2 mt-px   items-center  justify-start">
+              <span>
+                <i class="fa-solid fa-lg opacity-50 fa-location-dot"></i>
+              </span>
+              <label>
+                <input #orginInput autocomplete="off"
+                  class=" font-yekan-regular w-full block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2 px-3  leading-tight focus:outline-none focus:bg-transparent "
+                  id="grid-password" type="text" placeholder="مقصد را وارد کنید " formControlName="origin"
+                  (focus)="onClickOrigin()">
+              </label>
+            </div>
+          </div>
+          <!-- auto compelet -->
+          <!-- [ngClass]="openlist? 'opacity-100 translate-x-0 visible':'opacity-0 translate-x-28'" -->
+          <div *ngIf="openCityList" [@fadeInUpOnEnter] [@fadeOutDownOnLeave]
+            class=" top-0 left-0  lg:mt-1 fixed w-full    lg:absolute z-50 rounded-none lg:rounded-2xl  lg:w-80 bg-white lg:top-full"
+            [ngClass]="{'lg:right-0 ':dropdownState=='right','lg:right-60':dropdownState=='left'}">
+            <!-- start header -->
+            <div class=" flex items-center justify-between   p-4 pb-2 border-b w-full">
+              <p class="text-sm text-gray-500">نتایج جستجو:</p>
+              <button class=" block lg:hidden " (click)="onOpenList()"><i class=" fa-lg fa-solid fa-x"></i></button>
+            </div>
+            <!-- end header -->
+
+
+            <div class="flex h-screen lg:h-60 ">
+              <!-- start Inner cities -->
+
+              <div class=" flex h-fit lg:h-full  lg:overflow-auto ">
+
+                <div class="  pt-3 grid grid-cols-1 text-center gap-4">
+                  <div class="bg-gray-100 text-right sticky top-0">
+                    <p class=" p-2 text-sm text-blue-500 font-yekan-regular">شهر های پرتردد داخلی</p>
+                  </div>
+                  <span (click)='onSelectItem(city)' *ngFor="let city of Innercitys"
+                    class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center">
+                    <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
+                    {{city}}
+                  </span>
+                </div>
+                <!-- start Inner cities -->
+                <!-- start Foreign cities -->
+                <div class=" pt-3 grid grid-cols-1 text-center gap-4">
+                  <div class="bg-gray-100 text-right sticky top-0 ">
+                    <p class="p-2 text-sm text-blue-500 font-yekan-regular  ">شهر های پرتردد خارجی</p>
+                  </div>
+                  <p class=" select-none p-2 py-2 hover:bg-slate-300 rounded-lg   flex justify-start items-center"
+                    *ngFor="let city of Foreigncitys" (click)='onSelectItem(city)'>
+                    <i class=" fa-xl fa-solid w-5 mx-2 text-green-500   fa-location-dot"></i>
+                    {{city}}
+                  </p>
+                </div>
+                <!-- start Foreign cities -->
+
+              </div>
+
+
+            </div>
+          </div>
+          <!-- auto compelet -->
+        </div>
+
+
+        <div class="col-span-12 lg:col-span-3 ">
+
+          <!-- یکطرفه -->
+          <div *ngIf="rundeTrip" class="flex h-10  bg-gray-200 rounded-xl p-2   items-center  justify-between">
+            <span>
+              <i class="fa-solid opacity-50 fa-lg fa-calendar-days"></i>
+            </span>
+            <label class="flex">
+              <input readonly (focus)="onOpenDatepicker()" [(ngModel)]="dataDatePicker" ngbDatepicker #d="ngbDatepicker"
+                (click)="onClickDateInput()" #dateInput autocomplete="off"
+                class=" font-yekan-regular pointer-events-none user-select-none  w-full px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
+                id="grid-password  " type="text" placeholder="تاریخ رفت">
+            </label>
+            <label>
+              <input disabled readonly autocomplete="off"
+                class=" font-yekan-regular pointer-events-none user-select-none  w-full block  bg-transparent   text-gray-700   focus:border-gray-600  rounded-lg py-2  leading-tight focus:outline-none focus:bg-transparent "
+                id="grid-password" type="text" placeholder="تاریخ برگشت">
+            </label>
+          </div>
+
+          <!-- دوطرفه -->
+          <div *ngIf="!rundeTrip" class="flex h-10  bg-gray-200 rounded-xl p-2   items-center  justify-between">
+            <span>
+              <i class="fa-solid opacity-50 fa-lg fa-calendar-days"></i>
+            </span>
+            <label class="flex">
+              <input readonly (focus)="onOpenDatepicker()" [value]="(formatter.format(dataFromDate))" (click)="onClickDateInput()" #dateInput
+                autocomplete="off"
+                class=" font-yekan-regular pointer-events-none user-select-none  w-full px-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
+                id="grid-password  " type="text" placeholder="تاریخ رفت">
+            </label>
+            <label>
+              <input readonly autocomplete="off" [value]="(formatter.format(dataToDate))"
+                class=" font-yekan-regular pointer-events-none user-select-none  w-full block  bg-transparent   text-gray-700   focus:border-gray-600  rounded-lg py-2  leading-tight focus:outline-none focus:bg-transparent "
+                id="grid-password" type="text" placeholder="تاریخ برگشت">
+            </label>
+          </div>
+
+
+
+
+          <app-datepicker [roundTrip]="rundeTrip" (closeDatePicker)="onclosedatePicker($event)"
+            (dataToDate)="dataToDateDatepicker($event)" (dataFromDate)="dataFromDateDatepicker($event)"   (dataOneWay)="dataOneWayDatepicker($event)" *ngIf="openDatePicker" [@fadeInUpOnEnter] [@fadeOutDownOnLeave]>
+          </app-datepicker>
+        </div>
+
+
+
+
+
+
+        <div class="col-span-12 lg:col-span-4 flex flex-wrap flex-col  lg:flex-row">
+          <div class="flex-1 bg-white">
+
+            <div class="flex w-full h-10 bg-gray-200 rounded-xl p-2   items-center ">
+              <span class="flex items-center">
+                <i class="fa-solid fa-lg opacity-50 fa-user-group"></i>
+
+
+              </span>
+              <label class="flex items-center">
+
+                <input readonly #passengerInput (focus)="onOpenPassengerLIst()" (click)="onClickPassengerInput()"
+                  autocomplete="off"
+                  class="  pointer-events-none user-select-none w-2/6  select-none pr-3 block  bg-transparent   text-gray-700  focus:border-gray-600  rounded-lg py-2   leading-tight focus:outline-none focus:bg-transparent "
+                  id="grid-password" type="text" [value]="allPersonCount">
+                <p class=" font-yekan-regular  text-sm"> مسافر</p>
+              </label>
+            </div>
+
+          </div>
+
+          <div class="flex-1 bg-white pt-3 lg:pr-3 lg:pt-0">
+            <button
+              class=" font-yekan-bold  w-full py-2 px-6 h-10 rounded-lg  bg-gradient-to-tl from-orange-500 to-orange-300 text-white  hover:bg-gradient-to- text-lg ">جستجو</button>
+          </div>
+          <!--  -->
+
+          <!-- passenger fild  openPassengerLIst -->
+
+          <div *ngIf="openPassengerLIst" [@fadeInUpOnEnter] [@fadeOutDownOnLeave]
+            class=" fixed lg:absolute lg:top-full  w-full lg:w-80 bottom-0 lg:bottom-auto  left-0  lg:left-0  z-50 mt-1 rounded-t-2xl  lg:rounded-2xl  bg-white">
+            <div class="  flex items-center justify-between lg:hidden  text-center p-4 pb-2 border-b w-full">
+              <p class="text-sm text-gray-500">تعداد مسافران</p>
+              <button (click)="onClosePassengerLIst()">
+                <i class="  fa-solid fa-x"></i>
+
+              </button>
+            </div>
+            <div class="grid grid-flow-row p-4   h-60 ">
+
+              <div class=" border-b   flex items-center justify-between ">
+                <div>
+                  <h3>بزرگسال</h3>
+                  <p class="text-xs text-zinc-500">(از12 سال به بالا)</p>
+                </div>
+                <div class="flex ">
+                  <button class="bg-blue-200  flex justify-center items-center rounded-lg"
+                    (click)="increaseAdultPerson()"><i
+                      class="fa-solid text-blue-800 py-2 px-2  fa-plus"></i></button>
+                  <p class="text-xl w-2 mx-6">{{adultPersonCount}}</p>
+                  <button class="bg-blue-200  flex justify-center items-center rounded-lg"
+                    (click)="decreaseAdultPerson()"><i
+                      class="fa-solid text-blue-800 py-2 px-2 fa-minus"></i></button>
+                </div>
+              </div>
+
+              <div class=" border-b flex items-center justify-between ">
+                <div>
+                  <h3>کودک</h3>
+                  <p class="text-xs text-zinc-500">(از 2 تا 12 سال)</p>
+                </div>
+                <div class="flex">
+                  <div class="bg-blue-200  flex justify-center items-center rounded-lg">
+                    <button (click)="increaseChildPerson()">
+                      <i class="fa-solid text-blue-800 py-2 px-2  fa-plus"></i>
+                    </button>
+                  </div>
+                  <p class="text-xl w-2 mx-6">{{childPersonCount}}</p>
+                  <div class="bg-blue-200  flex justify-center items-center rounded-lg">
+                    <button (click)="decreaseChildPerson()"><i
+                        class="fa-solid text-blue-800 py-2 px-2  fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="  flex items-center justify-between ">
+                <div>
+                  <h3>نوزاد</h3>
+                  <p class="text-xs text-zinc-500">(از 10روز تا 2 سال)</p>
+                </div>
+                <div class="flex flex-row">
+                  <button (click)="increaseBabyPerson()"
+                    class="bg-blue-200  flex justify-center items-center rounded-lg"><i
+                      class="fa-solid text-blue-800 py-2 px-2 fa-plus"></i></button>
+                  <p class="text-xl w-2 mx-6">{{babyPersonCount}}</p>
+                  <button (click)="decreaseBabyPerson()"
+                    class="bg-blue-200  flex justify-center items-center rounded-lg"><i
+                      class="fa-solid text-blue-800 py-2 px-2  fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+            <div class="lg:hidden p-4     flex-1 bg-white  ">
+              <button
+                class="   w-full py-2 px-6 h-10 rounded-lg  bg-gradient-to-tl from-orange-500 to-orange-300 text-white  hover:bg-gradient-to- text-lg ">جستجو</button>
+            </div>
+          </div>
+
+          <!--  -->
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+
+  <!-- end form  -->
+  <!-- start background -->
+  <div class=" hidden lg:block  relative -z-10">
+    <figure>
+      <img
+        [ngClass]="openCityList  || openPassengerLIst  || openDatePicker ?'  blur-sm transition duration-500  ' : ' transition duration-500 '"
+        class=" mx-auto rounded-3xl " src="assets/backgrund/flight.jpg" alt="flight" width="1200" height="375"
+        loading="lazy">
+    </figure>
+    <!-- end background -->
+  </div>
+  <div *ngIf="openCityList  || openPassengerLIst  || openDatePicker "
+    class="opacity-50  lg:block fixed inset-0 z-40 bg-slate-900 dark:bg-gray-500">
+  </div>
+
+
+</div>

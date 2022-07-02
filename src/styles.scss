@@ -1,0 +1,174 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// fonts
+@font-face {
+    font-family: "iranyekan-black";
+    src: url('assets/fonts/iranyekanwebblackfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-bold";
+    src: url('assets/fonts/iranyekanwebboldfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-bextrablack";
+    src: url('assets/fonts/iranyekanwebextrablackfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-light";
+    src: url('assets/fonts/iranyekanweblightfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-medium";
+    src: url('assets/fonts/iranyekanwebmediumfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-thin";
+    src: url('assets/fonts/iranyekanwebthinfanum.woff');
+}
+
+@font-face {
+    font-family: "iranyekan-regular";
+    src: url('assets/fonts/iranyekanwebregularfanum.woff');
+}
+
+ngb-dp-content ngb-dp-months {
+    direction: ltr !important;
+}
+
+.ngb-dp-month .ngb-dp-week:nth-child(n+2){
+    .ngb-dp-day.disabled, .ngb-dp-day.hidden {
+        cursor: default;
+        pointer-events: none;
+        display: flex !important;
+        opacity: 0 !important;
+    }
+    
+}
+
+
+.ngb-dp-weekday {
+    text-align: right !important;
+    font-size: 0.9rem !important;
+    width: 4.6rem !important;
+    height: 2.5rem !important;
+    font-style: normal !important;
+    
+    @media (max-width:768px) {
+        background-color: rgba(236, 236, 236, 0.801) !important;
+        text-align: center !important   ;
+
+    }
+ 
+}
+
+.ngb-dp-day,
+.ngb-dp-week-number {
+    width: 4rem !important;
+    height: 2.5rem !important;
+    text-align: left !important;
+    font-size: large !important;
+
+    @media (max-width:1024px) {
+        width: 100% !important;
+        height: 2.5rem !important;
+
+    }
+
+}
+
+
+
+.ngb-dp-month+.ngb-dp-month .ngb-dp-week {
+    padding-left: 0 !important;
+}
+
+.ngb-dp-day {
+    background: #e6e9eb8b !important;
+    border-radius: 5px !important;
+    margin: 4px !important;
+}
+
+
+
+.bg-primary {
+    color: white !important;
+    background-color: #0075ff !important;
+    border-radius: 5px !important;
+
+
+}
+
+.ngb-dp-day:hover {
+    background: #579dd663 !important;
+    border-radius: 5px !important;
+}
+
+.ngb-datepicker {
+    width: 100% !important;
+    background-color: white !important;
+
+}
+
+ngb-datepicker {
+    border: none !important;
+    width: 100%;
+
+}
+
+.ngb-dp-arrow.right .ngb-dp-navigation-chevron {
+    transform: rotate(220deg) !important;
+    border-color: black !important;
+    outline: none !important;
+
+}
+
+
+.ngb-dp-navigation-chevron {
+    transform: rotate(45deg) !important;
+    border-color: black !important;
+    outline: none !important;
+
+
+}
+
+[ngbDatepickerDayView] {
+    text-align: left !important;
+    width: 100% !important;
+    height: 100% !important;
+    line-height: 2rem;
+    border-radius: 0.25rem;
+    background: transparent;
+    padding: 5px !important;
+}
+
+.ngb-dp-months {
+    display: flex !important;
+    justify-content: space-evenly !important;
+}
+
+.ngb-dp-week {
+    border-radius: 0.25rem !important;
+    display: flex !important;
+   
+
+    @media (max-width:1200px) {
+        justify-content: space-between !important
+    }
+
+
+}
+
+.ngb-dp-month {
+    @media (max-width:1200px) {
+
+        width: 100% !important;
+    }
+}

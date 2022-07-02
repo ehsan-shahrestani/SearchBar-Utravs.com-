@@ -1,0 +1,68 @@
+<div
+  class="  font-yekan-regular lg:mt-1 bg-white z-50  fixed lg:absolute top-0 h-screen lg:h-fit left-0 lg:top-full lg:left-0 w-full rounded-none  lg:rounded-2xl ">
+
+  <div class="bg-white block  lg:hidden p-4 text-left  ">
+    <button (click)="onCloseDatePicker()">
+      <i class="  fa-solid fa-x"></i>
+
+    </button>
+  </div>
+
+
+  <div class=" border-b  p-2 lg:p-8   border-gray-200">
+    <div *ngIf="roundTrip">
+
+      <ngb-datepicker  [minDate]="mindate"  (dateSelect)="selectday()" #dp [(ngModel)]="model" class="w-full bg-white rounded-xl  "
+        [firstDayOfWeek]="6" [displayMonths]="displayMonths" [navigation]="navigation"
+        [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
+
+
+      </ngb-datepicker>
+
+    </div>
+
+    <div *ngIf="!roundTrip">
+      <ngb-datepicker  [minDate]="mindate"  #dp [firstDayOfWeek]="6" (dateSelect)="onDateSelection($event)" [displayMonths]="displayMonths"
+        [dayTemplate]="t" [navigation]="navigation" [showWeekNumbers]="showWeekNumbers" [outsideDays]="outsideDays">
+      </ngb-datepicker>
+
+      <ng-template #t let-date let-focused="focused">
+        <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+          [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+          (mouseleave)="hoveredDate = null">
+          {{ date.day }}
+        </span>
+      </ng-template>
+
+
+      <div style="direction: ltr;" class=" text-right">
+        <p class="text-md"  > {{(formatter.format(fromDate))}} : تاریخ رفت </p>
+        <p class="text-md" >{{(formatter.format(toDate))}} :تاریخ برگشت</p>
+      </div>
+
+
+
+    </div>
+
+  </div>
+  <div class="flex justify-center lg:justify-between p-3">
+
+    <div class="hidden lg:block   ">
+      <button
+        class=" mx-2  py-2 px-6 h-10 rounded-lg  bg-white text-gray-600 border-gray-600  hover:bg-gray-600 hover:text-white border text-center  hover:bg-gradient-to- text-lg ">
+        <p>تغییر به تقویم میلادی</p>
+        <p *ngIf="false"> تغییر به تقویم شمسی</p>
+
+      </button>
+
+      <button (click)="selectToday() "
+        class="  py-2 px-6 h-10 rounded-lg  bg-white text-gray-600 border-gray-600  hover:bg-gray-600 hover:text-white border text-center  hover:bg-gradient-to- text-lg ">برو
+        به امروز</button>
+    </div>
+    <div class="  ">
+      <button (click)="onCloseDatePicker()"
+        class="  py-1 px-16 h-10 rounded-lg  bg-gradient-to-tl from-orange-500 to-orange-300 text-white  hover:bg-gradient-to- text-lg ">تایید</button>
+    </div>
+  </div>
+
+</div>
